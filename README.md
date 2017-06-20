@@ -1,6 +1,10 @@
 # Fractal tree
 Random fractal tree generator with [p5js](https://p5js.org/).
 
+## Live Example
+
+You can see it here [gps-fractal.herokuapp.com](https://gps-fractal.herokuapp.com/index.html) and just hit refresh to generate a new tree.
+
 ## Running it local
 
 Just clone it and open `index.html` in any browser.
