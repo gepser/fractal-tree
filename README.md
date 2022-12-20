@@ -3,7 +3,7 @@ Random fractal tree generator with [p5js](https://p5js.org/).
 
 ## Live Example
 
-You can see it here [https://fractal-tree-omega.vercel.app/](https://fractal-tree-omega.vercel.app/) and just hit refresh to generate a new tree.
+You can see it here [https://fractal.gepser.dev/](https://fractal.gepser.dev/) and just hit refresh to generate a new tree.
 
 ## Running it local
 
