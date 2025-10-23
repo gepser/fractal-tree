@@ -3,5 +3,9 @@
   "buildCommand": null,
   "devCommand": null,
   "framework": null,
-  "nodeVersion": "20.x"
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  }
 }
