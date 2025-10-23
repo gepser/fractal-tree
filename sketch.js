@@ -1,3 +1,4 @@
+// Fractal Tree Generator
 let angle = 0;
 let side = 700;
 let size = 0.7;
