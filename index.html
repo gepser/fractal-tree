@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,13 +8,40 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./fractal-ui.css?v=20260228" />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260301" />
   </head>
   <body>
     <main class="app">
       <section class="hero reveal">
         <div class="hero-copy-wrap">
-          <h1><span class="hero-title-icon" aria-hidden="true">🌳</span>Fractal Tree</h1>
+          <div class="hero-title-row">
+            <h1><span class="hero-title-icon" aria-hidden="true">🌳</span>Fractal Tree</h1>
+            <button
+              id="theme-toggle-btn"
+              class="theme-toggle-btn"
+              type="button"
+              aria-label="Switch to dark mode"
+              title="Switch to dark mode"
+              aria-pressed="false"
+            >
+              <span class="theme-toggle-icon" aria-hidden="true">
+                <svg class="icon-glyph icon-sun" viewBox="0 0 24 24" focusable="false">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 3v1"></path>
+                  <path d="M12 20v1"></path>
+                  <path d="M3 12h1"></path>
+                  <path d="M20 12h1"></path>
+                  <path d="m18.36 5.64-.7.7"></path>
+                  <path d="m6.34 17.66-.7.7"></path>
+                  <path d="m5.64 5.64.7.7"></path>
+                  <path d="m17.66 17.66.7.7"></path>
+                </svg>
+                <svg class="icon-glyph icon-moon" viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
           <p class="hero-copy">
             Fractal tree generator, with live controls, meaningful presets, and
             export-ready output.
