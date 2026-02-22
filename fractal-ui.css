@@ -661,6 +661,10 @@ select {
     border-radius: 18px;
   }
 
+  .hero-hints {
+    display: none;
+  }
+
   .panel,
   .canvas-shell {
     border-radius: 16px;
