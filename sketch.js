@@ -90,7 +90,6 @@ const ui = {
   redrawSpinTimer: null,
   copySeedDefaultLabel: "Copy seed",
   themeToggleBtn: null,
-  themeToggleLabel: null,
   openPrivacyBtn: null,
   closePrivacyBtn: null,
   privacyModal: null,
@@ -276,7 +275,6 @@ function cacheUi() {
   ui.applySeedBtn = document.getElementById("apply-seed-btn");
   ui.copySeedBtn = document.getElementById("copy-seed-btn");
   ui.themeToggleBtn = document.getElementById("theme-toggle-btn");
-  ui.themeToggleLabel = document.getElementById("theme-toggle-label");
   ui.openPrivacyBtn = document.getElementById("open-privacy-btn");
   ui.closePrivacyBtn = document.getElementById("close-privacy-btn");
   ui.privacyModal = document.getElementById("privacy-modal");
@@ -426,7 +424,6 @@ function toggleTheme() {
 function applyTheme(theme) {
   const normalizedTheme = theme === themes.dark ? themes.dark : themes.light;
   const isDark = normalizedTheme === themes.dark;
-  const nextToggleLabel = isDark ? "Light mode" : "Dark mode";
   const nextAriaLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
 
   document.documentElement.dataset.theme = normalizedTheme;
@@ -439,10 +436,6 @@ function applyTheme(theme) {
   ui.themeToggleBtn.setAttribute("aria-pressed", `${isDark}`);
   ui.themeToggleBtn.setAttribute("aria-label", nextAriaLabel);
   ui.themeToggleBtn.setAttribute("title", nextAriaLabel);
-
-  if (ui.themeToggleLabel) {
-    ui.themeToggleLabel.textContent = nextToggleLabel;
-  }
 }
 
 function bindPaletteSelectEvents() {

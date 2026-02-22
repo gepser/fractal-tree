@@ -133,13 +133,13 @@ html[data-theme="dark"] body::before {
 
 .hero-title-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
 }
 
 .hero-title-row h1 {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
 }
 
@@ -158,35 +158,42 @@ html[data-theme="dark"] body::before {
 
 .theme-toggle-btn {
   appearance: none;
-  border: 1px solid rgba(33, 84, 210, 0.26);
+  border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.84);
+  background: transparent;
   color: #275093;
-  min-height: 32px;
-  padding: 5px 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 30px;
   cursor: pointer;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
   transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
+    color 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
 }
 
 .theme-toggle-btn:hover {
-  border-color: rgba(33, 84, 210, 0.42);
-  background: rgba(255, 255, 255, 0.98);
+  color: #1b4aa0;
   transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid rgba(33, 84, 210, 0.34);
+  outline-offset: 3px;
 }
 
 .theme-toggle-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: inline-grid;
   place-items: center;
   position: relative;
@@ -194,35 +201,31 @@ html[data-theme="dark"] body::before {
 }
 
 .theme-toggle-icon .icon-glyph {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   position: absolute;
   inset: 0;
-  transition: opacity 180ms ease, transform 220ms ease;
+  transition: opacity 260ms ease, transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .theme-toggle-icon .icon-sun {
-  opacity: 0;
-  transform: scale(0.74) rotate(-20deg);
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 .theme-toggle-icon .icon-moon {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
+  opacity: 0;
+  transform: scale(0.48) rotate(-70deg);
 }
 
 .theme-toggle-btn.is-dark .theme-toggle-icon .icon-sun {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
+  opacity: 0;
+  transform: scale(0.48) rotate(70deg);
 }
 
 .theme-toggle-btn.is-dark .theme-toggle-icon .icon-moon {
-  opacity: 0;
-  transform: scale(0.74) rotate(18deg);
-}
-
-#theme-toggle-label {
-  font-family: "IBM Plex Mono", "Consolas", monospace;
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
 }
 
 .hero-title-icon {
@@ -371,7 +374,7 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
-button:not(.btn):not(.text-btn),
+button:not(.btn):not(.text-btn):not(.theme-toggle-btn),
 .p5Button {
   appearance: none;
   border-radius: 10px;
@@ -880,6 +883,13 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   color: #1b498f;
 }
 
+#redraw-btn.bare-icon {
+  width: 28px;
+  min-width: 28px;
+  border-color: transparent;
+  background: transparent;
+}
+
 #redraw-btn .icon-rotate {
   width: 17.5px;
   height: 17.5px;
@@ -942,6 +952,8 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 
 .bare-icon.icon-btn {
   border: 0;
+  border-color: transparent;
+  background: transparent;
 }
 
 @keyframes icon-toast {
@@ -1229,15 +1241,11 @@ html[data-theme="dark"] .hero-copy {
 }
 
 html[data-theme="dark"] .theme-toggle-btn {
-  border-color: rgba(130, 162, 214, 0.36);
-  background: rgba(18, 31, 52, 0.86);
-  color: #b7c9eb;
+  color: #d3e1fb;
 }
 
 html[data-theme="dark"] .theme-toggle-btn:hover {
-  border-color: rgba(157, 188, 236, 0.5);
-  background: rgba(26, 41, 66, 0.95);
-  color: #d2def5;
+  color: #f0f6ff;
 }
 
 html[data-theme="dark"] .hero-hints {
@@ -1310,7 +1318,7 @@ html[data-theme="dark"] select:focus-visible {
   outline-color: rgba(124, 157, 214, 0.68);
 }
 
-html[data-theme="dark"] button:not(.btn):not(.text-btn),
+html[data-theme="dark"] button:not(.btn):not(.text-btn):not(.theme-toggle-btn),
 html[data-theme="dark"] .p5Button,
 html[data-theme="dark"] select:not(#palette-input),
 html[data-theme="dark"] .p5Select {
@@ -1663,19 +1671,11 @@ html[data-theme="dark"] .privacy-updated {
     border-radius: 18px;
   }
 
-  .hero-title-row {
-    align-items: center;
-  }
-
   .theme-toggle-btn {
-    min-width: 32px;
-    width: 32px;
-    padding: 6px;
-    justify-content: center;
-  }
-
-  #theme-toggle-label {
-    display: none;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    flex-basis: 30px;
   }
 
   .hero-hints {
