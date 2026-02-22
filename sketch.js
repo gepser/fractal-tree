@@ -492,6 +492,7 @@ function bindUiEvents() {
     button.addEventListener("click", () => {
       applyPreset(button.dataset.preset);
     });
+    button.addEventListener("keydown", handlePresetKeydown);
   });
 
   if (ui.applySeedBtn) {
@@ -539,6 +540,45 @@ function initializeTheme() {
   const rootTheme = document.documentElement.dataset.theme;
   const isDark = rootTheme === themes.dark;
   applyTheme(isDark ? themes.dark : themes.light);
+}
+
+function handlePresetKeydown(event) {
+  if (!ui.presetButtons.length) {
+    return;
+  }
+
+  const currentButton = event.currentTarget;
+  const currentIndex = ui.presetButtons.indexOf(currentButton);
+
+  if (currentIndex === -1) {
+    return;
+  }
+
+  if (event.key === " " || event.key === "Enter") {
+    event.preventDefault();
+    applyPreset(currentButton.dataset.preset);
+    return;
+  }
+
+  let nextIndex = currentIndex;
+
+  if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    nextIndex = (currentIndex + 1) % ui.presetButtons.length;
+  } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+    nextIndex = (currentIndex - 1 + ui.presetButtons.length) % ui.presetButtons.length;
+  } else if (event.key === "Home") {
+    nextIndex = 0;
+  } else if (event.key === "End") {
+    nextIndex = ui.presetButtons.length - 1;
+  } else {
+    return;
+  }
+
+  event.preventDefault();
+
+  const nextButton = ui.presetButtons[nextIndex];
+  nextButton.focus();
+  applyPreset(nextButton.dataset.preset);
 }
 
 function toggleTheme() {
@@ -975,16 +1015,26 @@ function flashFactIconFeedback() {
 
 function setActivePreset(activePreset) {
   let activeLabel = "Custom";
+  let activeIndex = -1;
 
-  ui.presetButtons.forEach((button) => {
+  ui.presetButtons.forEach((button, index) => {
     const isActive = button.dataset.preset === activePreset;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", `${isActive}`);
+    button.setAttribute("aria-checked", `${isActive}`);
+    button.tabIndex = -1;
 
     if (isActive) {
       activeLabel = button.dataset.label || "Custom";
+      activeIndex = index;
     }
   });
+
+  if (activeIndex === -1 && ui.presetButtons[0]) {
+    ui.presetButtons[0].tabIndex = 0;
+  } else if (activeIndex > -1) {
+    ui.presetButtons[activeIndex].tabIndex = 0;
+  }
 
   updatePresetCurrentLabel(activeLabel);
 }
