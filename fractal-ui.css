@@ -99,6 +99,14 @@ body::before {
   font-size: clamp(1.9rem, 3.4vw, 3rem);
   font-weight: 800;
   color: #0f2040;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.28em;
+}
+
+.hero-title-icon {
+  font-size: 0.68em;
+  line-height: 1;
 }
 
 .hero-copy {
