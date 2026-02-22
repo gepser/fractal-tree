@@ -17,6 +17,10 @@ const state = {
 let treeCanvas;
 let hostResizeObserver;
 let factCycleOffset = 0;
+const themes = Object.freeze({
+  light: "light",
+  dark: "dark",
+});
 
 const paletteStops = {
   forest: ["#4f3221", "#2f7f54", "#abf26d"],
@@ -85,6 +89,8 @@ const ui = {
   copySeedFeedbackTimer: null,
   redrawSpinTimer: null,
   copySeedDefaultLabel: "Copy seed",
+  themeToggleBtn: null,
+  themeToggleLabel: null,
   openPrivacyBtn: null,
   closePrivacyBtn: null,
   privacyModal: null,
@@ -100,6 +106,7 @@ function setup() {
   noLoop();
 
   cacheUi();
+  initializeTheme();
   bindUiEvents();
   bindKeyboardShortcuts();
   observeHostResize();
@@ -268,6 +275,8 @@ function cacheUi() {
   ui.seedInput = document.getElementById("seed-input");
   ui.applySeedBtn = document.getElementById("apply-seed-btn");
   ui.copySeedBtn = document.getElementById("copy-seed-btn");
+  ui.themeToggleBtn = document.getElementById("theme-toggle-btn");
+  ui.themeToggleLabel = document.getElementById("theme-toggle-label");
   ui.openPrivacyBtn = document.getElementById("open-privacy-btn");
   ui.closePrivacyBtn = document.getElementById("close-privacy-btn");
   ui.privacyModal = document.getElementById("privacy-modal");
@@ -395,8 +404,45 @@ function bindUiEvents() {
     ui.nextFactBtn.addEventListener("click", showNextFact);
   }
 
+  if (ui.themeToggleBtn) {
+    ui.themeToggleBtn.addEventListener("click", toggleTheme);
+  }
+
   bindPaletteSelectEvents();
   bindPrivacyModalEvents();
+}
+
+function initializeTheme() {
+  const rootTheme = document.documentElement.dataset.theme;
+  const isDark = rootTheme === themes.dark;
+  applyTheme(isDark ? themes.dark : themes.light);
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.dataset.theme === themes.dark;
+  applyTheme(isDark ? themes.light : themes.dark);
+}
+
+function applyTheme(theme) {
+  const normalizedTheme = theme === themes.dark ? themes.dark : themes.light;
+  const isDark = normalizedTheme === themes.dark;
+  const nextToggleLabel = isDark ? "Light mode" : "Dark mode";
+  const nextAriaLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
+
+  document.documentElement.dataset.theme = normalizedTheme;
+
+  if (!ui.themeToggleBtn) {
+    return;
+  }
+
+  ui.themeToggleBtn.classList.toggle("is-dark", isDark);
+  ui.themeToggleBtn.setAttribute("aria-pressed", `${isDark}`);
+  ui.themeToggleBtn.setAttribute("aria-label", nextAriaLabel);
+  ui.themeToggleBtn.setAttribute("title", nextAriaLabel);
+
+  if (ui.themeToggleLabel) {
+    ui.themeToggleLabel.textContent = nextToggleLabel;
+  }
 }
 
 function bindPaletteSelectEvents() {
