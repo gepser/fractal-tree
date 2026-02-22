@@ -622,8 +622,8 @@ select:not(#palette-input),
 }
 
 .control-group label {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 8px;
   color: var(--muted);
@@ -631,7 +631,16 @@ select:not(#palette-input),
   font-weight: 700;
 }
 
+.control-label {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 output {
+  justify-self: end;
+  white-space: nowrap;
   color: #234776;
   font-family: "IBM Plex Mono", "Consolas", monospace;
   font-size: var(--font-size-sm);
