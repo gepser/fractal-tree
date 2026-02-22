@@ -481,18 +481,21 @@ select:not(#palette-input),
   height: 18px;
   border-radius: 999px;
   border: 2px solid rgba(33, 84, 210, 0.44);
+  outline: 6px solid rgba(33, 84, 210, 0.18);
+  outline-offset: -6px;
   padding: 0;
   color: transparent;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.96);
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 0 0 0 rgba(33, 84, 210, 0.34),
+    0 0 0 0 rgba(33, 84, 210, 0.12);
   transition:
     background-color 0.18s ease,
     border-color 0.18s ease,
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
+    transform 0.18s ease;
 }
 
 .preset-btn:hover {
@@ -507,9 +510,8 @@ select:not(#palette-input),
 .preset-btn.is-active {
   border-color: rgba(31, 80, 199, 0.95);
   background: linear-gradient(145deg, #2a63da, #1f50c7);
-  box-shadow:
-    0 0 0 2px rgba(255, 255, 255, 0.62),
-    0 0 0 5px rgba(33, 84, 210, 0.14);
+  outline-color: rgba(31, 80, 199, 0.32);
+  animation: preset-check 420ms linear;
 }
 
 .controls {
@@ -1440,8 +1442,11 @@ html[data-theme="dark"] .stats h3 {
 
 html[data-theme="dark"] .preset-btn {
   border-color: rgba(160, 182, 219, 0.58);
+  outline-color: rgba(149, 170, 203, 0.3);
   background: rgba(31, 43, 62, 0.96);
-  box-shadow: 0 0 0 2px rgba(23, 34, 51, 0.72);
+  box-shadow:
+    0 0 0 0 rgba(141, 175, 233, 0.36),
+    0 0 0 0 rgba(141, 175, 233, 0.12);
 }
 
 html[data-theme="dark"] .preset-btn:hover {
@@ -1463,9 +1468,39 @@ html[data-theme="dark"] .preset-current-label {
 html[data-theme="dark"] .preset-btn.is-active {
   border-color: rgba(170, 196, 242, 0.95);
   background: linear-gradient(140deg, #5c83cb, #496db4);
-  box-shadow:
-    0 0 0 2px rgba(20, 31, 48, 0.82),
-    0 0 0 5px rgba(121, 153, 213, 0.22);
+  outline-color: rgba(170, 196, 242, 0.4);
+}
+
+@keyframes preset-check {
+  50% {
+    box-shadow:
+      0 0 0 9px rgba(33, 84, 210, 0.3),
+      0 0 0 17px rgba(33, 84, 210, 0.12);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(33, 84, 210, 0.3),
+      0 0 0 0 rgba(33, 84, 210, 0.1);
+  }
+}
+
+html[data-theme="dark"] .preset-btn.is-active {
+  animation: preset-check-dark 420ms linear;
+}
+
+@keyframes preset-check-dark {
+  50% {
+    box-shadow:
+      0 0 0 9px rgba(141, 175, 233, 0.34),
+      0 0 0 17px rgba(141, 175, 233, 0.14);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(141, 175, 233, 0.3),
+      0 0 0 0 rgba(141, 175, 233, 0.12);
+  }
 }
 
 html[data-theme="dark"] .control-group {
