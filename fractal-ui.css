@@ -111,30 +111,10 @@ body::before {
 
 .hero-copy {
   margin: 0;
-  max-width: 60ch;
+  max-width: 100%;
   color: var(--muted);
   font-size: clamp(0.86rem, 1vw, 0.96rem);
   line-height: 1.38;
-}
-
-.hero-badges {
-  margin-top: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.hero-badges span {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  border: 1px solid rgba(33, 84, 210, 0.22);
-  background: rgba(255, 255, 255, 0.78);
-  color: #35537f;
-  font-size: 0.69rem;
-  font-weight: 700;
-  letter-spacing: 0.015em;
-  padding: 4px 10px;
 }
 
 .hero-hints {
