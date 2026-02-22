@@ -8,7 +8,7 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./fractal-ui.css?v=20260227" />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260228" />
   </head>
   <body>
     <main class="app">
@@ -188,22 +188,17 @@
               <p><span>Branches</span><strong id="branches-value">-</strong></p>
               <p><span>Depth</span><strong id="depth-value">-</strong></p>
             </div>
-            <div class="facts-card" aria-live="polite">
-              <p class="facts-title">Fractal fact</p>
-              <p id="fact-text" class="fact-text">-</p>
-              <p class="fact-live">
-                <span id="fact-metric-label">Live insight</span>
-                <strong id="fact-metric-value">-</strong>
-              </p>
-            </div>
           </div>
         </aside>
 
         <section class="canvas-shell" aria-label="Tree preview">
           <div class="canvas-header">
-            <div>
+            <div class="canvas-intro">
               <h2>Preview</h2>
-              <p>Each seed generates a distinct composition.</p>
+              <p class="preview-fact-row" aria-live="polite">
+                <span class="preview-fact-label">Fractal Fact:</span>
+                <span id="fact-text">-</span>
+              </p>
             </div>
             <div class="canvas-tools">
               <button
