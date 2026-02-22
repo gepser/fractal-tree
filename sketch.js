@@ -213,6 +213,8 @@ const ui = {
   presetCurrentLabel: null,
   presetButtons: [],
   presetLabelTransitionTimer: null,
+  shortcutKeyHints: new Map(),
+  shortcutFeedbackTimers: new Map(),
 };
 
 function setup() {
@@ -397,6 +399,11 @@ function cacheUi() {
   ui.privacyModal = document.getElementById("privacy-modal");
   ui.presetCurrentLabel = document.getElementById("preset-current-label");
   ui.presetButtons = Array.from(document.querySelectorAll("[data-preset]"));
+  ui.shortcutKeyHints = new Map(
+    Array.from(document.querySelectorAll("[data-shortcut-key]")).map((element) => {
+      return [element.dataset.shortcutKey, element];
+    }),
+  );
 
   if (ui.applySeedBtn) {
     ui.applySeedDefaultLabel = ui.applySeedBtn.getAttribute("aria-label") || "Apply seed";
@@ -855,6 +862,7 @@ function bindKeyboardShortcuts() {
 
     if (key === "r") {
       event.preventDefault();
+      flashShortcutHint("r");
       randomizeConfig();
       renderTree();
       return;
@@ -862,15 +870,43 @@ function bindKeyboardShortcuts() {
 
     if (key === "m") {
       event.preventDefault();
+      flashShortcutHint("m");
       mutateConfig();
       return;
     }
 
     if (key === "s") {
       event.preventDefault();
+      flashShortcutHint("s");
       saveCanvas(treeCanvas, `fractal-tree-${state.seed}`, "png");
     }
   });
+}
+
+function flashShortcutHint(key) {
+  const target = ui.shortcutKeyHints.get(key);
+
+  if (!target) {
+    return;
+  }
+
+  const previousTimer = ui.shortcutFeedbackTimers.get(key);
+
+  if (previousTimer) {
+    window.clearTimeout(previousTimer);
+    ui.shortcutFeedbackTimers.delete(key);
+  }
+
+  target.classList.remove("is-shortcut-active");
+  void target.offsetWidth;
+  target.classList.add("is-shortcut-active");
+
+  const timer = window.setTimeout(() => {
+    target.classList.remove("is-shortcut-active");
+    ui.shortcutFeedbackTimers.delete(key);
+  }, 620);
+
+  ui.shortcutFeedbackTimers.set(key, timer);
 }
 
 function syncInputsFromState() {
