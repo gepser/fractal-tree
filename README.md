@@ -1,4 +1,4 @@
-# Fractal Tree Remastered 🌳
+# Fractal Tree 🌳
 
 [![Made with p5.js](https://img.shields.io/badge/Made%20with-p5.js-ed225d?logo=p5.js&logoColor=white)](https://p5js.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg)](./LICENSE)
@@ -36,10 +36,6 @@ Then open [http://localhost:4173](http://localhost:4173).
    - `Apply` uses your manual seed value
    - `Copy seed` copies the current seed
    - `Save PNG` downloads an image
-4. Force refresh if you see old assets:
-   - macOS: `Cmd + Shift + R`
-   - Windows/Linux: `Ctrl + F5`
-
 ## Stack 📦
 
 - HTML
