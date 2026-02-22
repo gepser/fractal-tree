@@ -53,11 +53,126 @@ const treePresets = {
 };
 
 const fractalFactCatalog = [
-  "Benoit Mandelbrot popularized the term \"fractal\" in 1975.",
-  "Fractal trees are self-similar: each branch echoes the whole structure.",
-  "Many natural systems show fractal behavior, including plants and lightning.",
-  "Simple recursive rules can create complex organic-looking forms.",
-  "Fractal models are widely used in games and VFX for natural scenery.",
+  "Fractal trees show how simple rules can create surprisingly rich forms.",
+  "One tiny branch rule can grow into a shape that feels alive.",
+  "Fractal ideas help artists make nature look believable in seconds.",
+  "Game studios use fractal methods to generate forests and mountains faster.",
+  "VFX teams use fractal patterns for smoke, clouds, and lightning shots.",
+  "Fractal branching helps create realistic trees without modeling every twig.",
+  "Many plants look fractal because growth repeats similar patterns.",
+  "A fern is a classic example of repeating structure at different scales.",
+  "Romanesco broccoli is famous for its fractal-like spiral growth.",
+  "River networks often branch in ways that resemble fractal trees.",
+  "Lightning paths often show fractal-like branching behavior.",
+  "Blood vessels branch in patterns often studied with fractal tools.",
+  "The bronchial tree in lungs is a real branching system.",
+  "Root systems spread with branching logic similar to fractal models.",
+  "Coral growth often looks like a living fractal sculpture.",
+  "Snowflake branches can show fractal-like repetition.",
+  "Fractals help explain why nature looks complex but still organized.",
+  "Fractal geometry is useful when straight lines fail to describe reality.",
+  "Coastlines are a famous case of scale-dependent complexity.",
+  "Fractal thinking helps model rough, irregular, natural boundaries.",
+  "Scientists use fractal metrics to compare natural textures.",
+  "Doctors and researchers use fractal analysis in medical imaging.",
+  "Fractal measures can help describe tissue and vessel patterns.",
+  "Ecologists use fractal ideas to study habitat complexity.",
+  "Geologists use fractal tools to study crack and fracture networks.",
+  "Engineers use fractal-inspired antennas to save space in compact devices.",
+  "Fractal antenna shapes can support multiple frequencies in one design.",
+  "Designers use fractal noise to build natural-looking terrain.",
+  "Fractal noise is common in clouds, fire, and weather visuals.",
+  "Procedural generation with fractals saves huge production time.",
+  "Fractals let small teams build large worlds with consistent style.",
+  "Fractal methods are useful when you need many variations quickly.",
+  "In generative art, fractals are a bridge between math and beauty.",
+  "Fractal trees are popular for teaching recursion visually.",
+  "They are a great way to learn how tiny rules create big outcomes.",
+  "A fractal tree is a reminder that complexity can come from simplicity.",
+  "Changing one parameter can completely change the mood of a tree.",
+  "Angle controls whether a tree feels calm, wild, or windswept.",
+  "Branch reduction controls how quickly the form tapers.",
+  "Minimum length controls when growth stops.",
+  "Base thickness changes how strong or delicate the tree feels.",
+  "Seed values let you reproduce a design exactly.",
+  "With seeds, experimentation stays creative but reproducible.",
+  "Mutations help you explore nearby ideas without starting over.",
+  "Presets give you reliable starting points for exploration.",
+  "Fractals are useful for rapid ideation in visual design.",
+  "They help you discover forms you would not sketch by hand.",
+  "Many logo explorations start from fractal or recursive sketches.",
+  "Fractal branching is used in abstract posters and album art.",
+  "Architects sometimes borrow fractal proportions for facades and layouts.",
+  "Fractal-inspired patterns appear in textiles and product surfaces.",
+  "Fractal structures can inspire efficient packing and distribution ideas.",
+  "Network visualizations often use branching layouts inspired by fractals.",
+  "Mind-map and knowledge-map tools use tree-like fractal logic.",
+  "Fractal models can make synthetic scenes feel more organic.",
+  "They are especially useful when realism and variation both matter.",
+  "Fractal methods are great for background assets in games and film.",
+  "You can generate hundreds of unique trees from one core algorithm.",
+  "Fractal trees scale well from icons to large prints.",
+  "Because rules are compact, files stay lightweight.",
+  "Fractal systems can produce detail without storing huge meshes.",
+  "That makes them useful in interactive and real-time graphics.",
+  "Fractals are a classic way to showcase creative coding skills.",
+  "They reward curiosity: every tweak teaches you something.",
+  "Fractal exploration often feels like visual research.",
+  "You can use fractal outputs as references for hand illustration.",
+  "Many tattoo artists and illustrators use fractal-inspired motifs.",
+  "Fractal branches can evoke growth, resilience, and adaptation.",
+  "That symbolism is why fractal trees are popular in branding.",
+  "Fractal visuals can feel both natural and futuristic at once.",
+  "They work well for meditation, ambient visuals, and screensavers.",
+  "Some music visualizers use fractal logic for evolving forms.",
+  "Fractal animation can look rich even with simple CPU math.",
+  "Recursive art often produces happy accidents worth keeping.",
+  "Fractal workflows encourage exploration over perfection.",
+  "You can capture snapshots as PNG and build your own visual library.",
+  "Over time, seeds become a catalog of your favorite styles.",
+  "Fractal trees are great prompts for storytelling and worldbuilding.",
+  "Wider canopies can feel open and optimistic.",
+  "Narrow canopies can feel dramatic or mysterious.",
+  "Dense branching can suggest abundance and energy.",
+  "Minimal branching can suggest clarity and calm.",
+  "Color palettes can turn the same geometry into new emotions.",
+  "Warm palettes can feel sunset-like and cinematic.",
+  "Cool palettes can feel nocturnal and technical.",
+  "Monochrome palettes can feel editorial and timeless.",
+  "Fractals are useful in UI demos because they react instantly to input.",
+  "They make sliders meaningful by showing clear visual cause and effect.",
+  "Fractal trees help people trust controls through immediate feedback.",
+  "In classrooms, they connect math, coding, and art in one exercise.",
+  "They are a good first project for creative coding workshops.",
+  "Students quickly see how loops and recursion differ.",
+  "Fractal demos often spark questions about nature and pattern.",
+  "They make abstract concepts easier to remember.",
+  "Fractal research also appears in economics and signal analysis.",
+  "But in creative tools, their superpower is fast visual richness.",
+  "A good fractal system balances randomness and control.",
+  "Too much randomness feels noisy; too little feels repetitive.",
+  "Seeds solve that by making randomness predictable.",
+  "Fractals can produce infinite families of related designs.",
+  "That is ideal for generating themes, variants, and mood boards.",
+  "Fractal trees can be used as decorative overlays in motion graphics.",
+  "They can also drive masks, textures, and transition shapes.",
+  "Fractal paths can inspire camera moves in animation.",
+  "Many artists use fractal renders as base layers for paint-over work.",
+  "Fractal outputs can be vector-traced for print workflows.",
+  "They can be laser-cut, embroidered, or engraved as patterns.",
+  "Fractal-inspired jewelry and decor are common in maker communities.",
+  "Because fractals are rule-based, they are easy to remix.",
+  "Rule-based art is great for collaborative and open-source projects.",
+  "Fractal trees are proof that code can feel handcrafted.",
+  "A tiny script can create results that feel surprisingly human.",
+  "Every generated tree is a fresh composition from the same core DNA.",
+  "This is why fractals are loved in both science and design.",
+  "They help us see order inside apparent chaos.",
+  "They remind us that growth happens by repeating small steps.",
+  "In product design, that mindset also applies to iteration.",
+  "Small changes, repeated often, can produce big outcomes.",
+  "Fractal tools are fun, but they are also practical creative engines.",
+  "If one tree surprises you, keep exploring: the space is huge.",
 ];
 
 const ui = {
@@ -95,7 +210,11 @@ const ui = {
   privacyModal: null,
   privacyHideTimer: null,
   privacyLastActiveElement: null,
+  presetCurrentLabel: null,
   presetButtons: [],
+  presetLabelTransitionTimer: null,
+  shortcutKeyHints: new Map(),
+  shortcutFeedbackTimers: new Map(),
 };
 
 function setup() {
@@ -278,7 +397,13 @@ function cacheUi() {
   ui.openPrivacyBtn = document.getElementById("open-privacy-btn");
   ui.closePrivacyBtn = document.getElementById("close-privacy-btn");
   ui.privacyModal = document.getElementById("privacy-modal");
+  ui.presetCurrentLabel = document.getElementById("preset-current-label");
   ui.presetButtons = Array.from(document.querySelectorAll("[data-preset]"));
+  ui.shortcutKeyHints = new Map(
+    Array.from(document.querySelectorAll("[data-shortcut-key]")).map((element) => {
+      return [element.dataset.shortcutKey, element];
+    }),
+  );
 
   if (ui.applySeedBtn) {
     ui.applySeedDefaultLabel = ui.applySeedBtn.getAttribute("aria-label") || "Apply seed";
@@ -737,6 +862,7 @@ function bindKeyboardShortcuts() {
 
     if (key === "r") {
       event.preventDefault();
+      flashShortcutHint("r");
       randomizeConfig();
       renderTree();
       return;
@@ -744,15 +870,43 @@ function bindKeyboardShortcuts() {
 
     if (key === "m") {
       event.preventDefault();
+      flashShortcutHint("m");
       mutateConfig();
       return;
     }
 
     if (key === "s") {
       event.preventDefault();
+      flashShortcutHint("s");
       saveCanvas(treeCanvas, `fractal-tree-${state.seed}`, "png");
     }
   });
+}
+
+function flashShortcutHint(key) {
+  const target = ui.shortcutKeyHints.get(key);
+
+  if (!target) {
+    return;
+  }
+
+  const previousTimer = ui.shortcutFeedbackTimers.get(key);
+
+  if (previousTimer) {
+    window.clearTimeout(previousTimer);
+    ui.shortcutFeedbackTimers.delete(key);
+  }
+
+  target.classList.remove("is-shortcut-active");
+  void target.offsetWidth;
+  target.classList.add("is-shortcut-active");
+
+  const timer = window.setTimeout(() => {
+    target.classList.remove("is-shortcut-active");
+    ui.shortcutFeedbackTimers.delete(key);
+  }, 620);
+
+  ui.shortcutFeedbackTimers.set(key, timer);
 }
 
 function syncInputsFromState() {
@@ -820,11 +974,68 @@ function flashFactIconFeedback() {
 }
 
 function setActivePreset(activePreset) {
+  let activeLabel = "Custom";
+
   ui.presetButtons.forEach((button) => {
     const isActive = button.dataset.preset === activePreset;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", `${isActive}`);
+
+    if (isActive) {
+      activeLabel = button.dataset.label || "Custom";
+    }
   });
+
+  updatePresetCurrentLabel(activeLabel);
+}
+
+function updatePresetCurrentLabel(nextLabel) {
+  if (!ui.presetCurrentLabel) {
+    return;
+  }
+
+  const labelRoot = ui.presetCurrentLabel;
+  const currentItem =
+    labelRoot.querySelector(".preset-current-label-item.is-next") ||
+    labelRoot.querySelector(".preset-current-label-item");
+  const currentText = currentItem ? currentItem.textContent.trim() : labelRoot.textContent.trim();
+
+  if (currentText === nextLabel) {
+    return;
+  }
+
+  if (ui.presetLabelTransitionTimer) {
+    window.clearTimeout(ui.presetLabelTransitionTimer);
+    ui.presetLabelTransitionTimer = null;
+  }
+
+  labelRoot.classList.remove("is-sliding");
+
+  const exitingItem = document.createElement("span");
+  exitingItem.className = "preset-current-label-item is-exit";
+  exitingItem.textContent = currentText || nextLabel;
+
+  const enteringItem = document.createElement("span");
+  enteringItem.className = "preset-current-label-item is-next";
+  enteringItem.textContent = nextLabel;
+
+  labelRoot.replaceChildren(exitingItem, enteringItem);
+  void labelRoot.offsetWidth;
+  labelRoot.classList.add("is-sliding");
+
+  ui.presetLabelTransitionTimer = window.setTimeout(() => {
+    if (!ui.presetCurrentLabel) {
+      ui.presetLabelTransitionTimer = null;
+      return;
+    }
+
+    const settledItem = document.createElement("span");
+    settledItem.className = "preset-current-label-item";
+    settledItem.textContent = nextLabel;
+    ui.presetCurrentLabel.replaceChildren(settledItem);
+    ui.presetCurrentLabel.classList.remove("is-sliding");
+    ui.presetLabelTransitionTimer = null;
+  }, 260);
 }
 
 function applySeedFromInput() {

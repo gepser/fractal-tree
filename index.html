@@ -8,14 +8,17 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./fractal-ui.css?v=20260301" />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260302" />
   </head>
   <body>
     <main class="app">
       <section class="hero reveal">
         <div class="hero-copy-wrap">
           <div class="hero-title-row">
-            <h1><span class="hero-title-icon" aria-hidden="true">🌳</span>Fractal Tree</h1>
+            <h1>
+              <span class="hero-title-icon" aria-hidden="true">🌳</span>Fractal
+              <span class="hero-title-accent">Tree</span>
+            </h1>
             <button
               id="theme-toggle-btn"
               class="theme-toggle-btn"
@@ -43,16 +46,18 @@
             </button>
           </div>
           <p class="hero-copy">
-            Fractal tree generator, with live controls, meaningful presets, and
-            export-ready output.
+            Fractal tree generator, with
+            <span class="hero-copy-accent">live controls</span>,
+            <span class="hero-copy-accent">meaningful presets</span>, and
+            <span class="hero-copy-accent">export-ready output</span>.
           </p>
         </div>
 
         <aside class="hero-hints" aria-label="Keyboard shortcuts">
           <h2>Shortcuts</h2>
-          <p><kbd>R</kbd> New random tree</p>
-          <p><kbd>M</kbd> Soft mutation</p>
-          <p><kbd>S</kbd> Save PNG</p>
+          <p><kbd data-shortcut-key="r">R</kbd> New random tree</p>
+          <p><kbd data-shortcut-key="m">M</kbd> Soft mutation</p>
+          <p><kbd data-shortcut-key="s">S</kbd> Save PNG</p>
         </aside>
       </section>
 
@@ -60,7 +65,10 @@
         <aside class="panel" aria-label="Control panel">
           <div class="panel-heading">
             <h2>Controls</h2>
-            <p>Explore new variations without losing momentum.</p>
+            <p>
+              Explore <span class="inline-emphasis">new variations</span> without
+              losing momentum.
+            </p>
           </div>
 
           <div class="actions">
@@ -76,16 +84,36 @@
 
           <div class="preset-block" aria-label="Tree presets">
             <h3>Presets</h3>
-            <div class="preset-actions">
-              <button class="preset-btn" type="button" data-preset="classic">
-                Classic
-              </button>
-              <button class="preset-btn" type="button" data-preset="dense">
-                Dense
-              </button>
-              <button class="preset-btn" type="button" data-preset="minimal">
-                Minimal
-              </button>
+            <div id="preset-actions" class="preset-actions">
+              <span id="preset-current-label" class="preset-current-label" aria-live="polite">
+                <span class="preset-current-label-item">Custom</span>
+              </span>
+              <div class="preset-dots" aria-label="Preset selector">
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="classic"
+                  data-label="Classic"
+                  aria-label="Classic preset"
+                  title="Classic preset"
+                ></button>
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="dense"
+                  data-label="Dense"
+                  aria-label="Dense preset"
+                  title="Dense preset"
+                ></button>
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="minimal"
+                  data-label="Minimal"
+                  aria-label="Minimal preset"
+                  title="Minimal preset"
+                ></button>
+              </div>
             </div>
           </div>
 
