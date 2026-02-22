@@ -1714,6 +1714,33 @@ html[data-theme="dark"] .privacy-updated {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  #canvas-host canvas {
+    animation: none;
+  }
+
+  #redraw-btn.is-spinning .icon-rotate,
+  #apply-seed-btn.is-success .apply-check-icon,
+  .bare-icon.icon-btn.is-feedback::after {
+    animation: none;
+  }
+}
+
 @media (min-width: 1081px) {
   .app {
     height: 100vh;

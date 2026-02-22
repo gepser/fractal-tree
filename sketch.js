@@ -21,6 +21,7 @@ const themes = Object.freeze({
   light: "light",
   dark: "dark",
 });
+const THEME_STORAGE_KEY = "fractal-tree-theme";
 
 const paletteStops = {
   forest: ["#4f3221", "#2f7f54", "#abf26d"],
@@ -528,9 +529,15 @@ function bindUiEvents() {
 }
 
 function initializeTheme() {
+  const storedTheme = readStoredTheme();
+  if (storedTheme) {
+    applyTheme(storedTheme, { persist: false });
+    return;
+  }
+
   const rootTheme = document.documentElement.dataset.theme;
   const isDark = rootTheme === themes.dark;
-  applyTheme(isDark ? themes.dark : themes.light);
+  applyTheme(isDark ? themes.dark : themes.light, { persist: false });
 }
 
 function toggleTheme() {
@@ -538,12 +545,17 @@ function toggleTheme() {
   applyTheme(isDark ? themes.light : themes.dark);
 }
 
-function applyTheme(theme) {
+function applyTheme(theme, options = {}) {
+  const { persist = true } = options;
   const normalizedTheme = theme === themes.dark ? themes.dark : themes.light;
   const isDark = normalizedTheme === themes.dark;
   const nextAriaLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
 
   document.documentElement.dataset.theme = normalizedTheme;
+
+  if (persist) {
+    persistTheme(normalizedTheme);
+  }
 
   if (!ui.themeToggleBtn) {
     return;
@@ -553,6 +565,21 @@ function applyTheme(theme) {
   ui.themeToggleBtn.setAttribute("aria-pressed", `${isDark}`);
   ui.themeToggleBtn.setAttribute("aria-label", nextAriaLabel);
   ui.themeToggleBtn.setAttribute("title", nextAriaLabel);
+}
+
+function readStoredTheme() {
+  try {
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return storedTheme === themes.dark || storedTheme === themes.light ? storedTheme : null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function persistTheme(theme) {
+  try {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch (_error) {}
 }
 
 function bindPaletteSelectEvents() {

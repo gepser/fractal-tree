@@ -4,11 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fractal Tree</title>
+    <script>
+      (() => {
+        const key = "fractal-tree-theme";
+        const fallbackTheme = "light";
+
+        try {
+          const storedTheme = window.localStorage.getItem(key);
+          if (storedTheme === "light" || storedTheme === "dark") {
+            document.documentElement.dataset.theme = storedTheme;
+            return;
+          }
+        } catch (_error) {}
+
+        document.documentElement.dataset.theme = fallbackTheme;
+      })();
+    </script>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./fractal-ui.css?v=20260301" />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260302" />
   </head>
   <body>
     <main class="app">
