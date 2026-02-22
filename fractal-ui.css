@@ -1892,7 +1892,7 @@ html[data-theme="dark"] .privacy-updated {
     grid-template-areas:
       "heading heading"
       "actions actions"
-      "presets stats"
+      "stats presets"
       "controls controls";
     column-gap: 7px;
     row-gap: 7px;
