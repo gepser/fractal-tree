@@ -536,15 +536,37 @@ select {
   line-height: 1;
 }
 
-.icon-btn span {
-  display: inline-block;
-  line-height: 1;
-  font-size: 0.92rem;
-  transform: translateY(-0.5px);
+.icon-glyph {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.15;
 }
 
-#redraw-btn.icon-btn span {
-  font-size: 1rem;
+#copy-seed-btn {
+  color: #143f91;
+  border-color: rgba(33, 84, 210, 0.52);
+  background: linear-gradient(140deg, rgba(247, 252, 255, 1), rgba(226, 239, 255, 0.98));
+}
+
+#copy-seed-btn .icon-copy {
+  width: 17.5px;
+  height: 17.5px;
+  stroke-width: 2.6;
+}
+
+#redraw-btn.icon-btn {
+  color: #1b498f;
+}
+
+#redraw-btn .icon-rotate {
+  width: 17.5px;
+  height: 17.5px;
+  stroke-width: 2.35;
 }
 
 .icon-btn.is-feedback {
