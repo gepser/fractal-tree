@@ -802,7 +802,10 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 
 #apply-seed-btn {
   position: relative;
-  min-width: 58px;
+  min-width: 50px;
+  padding: 4px 8px;
+  font-size: 0.74rem;
+  line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
