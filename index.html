@@ -153,6 +153,34 @@
               <p>Each seed generates a distinct composition.</p>
             </div>
             <div class="canvas-tools">
+              <button
+                id="copy-seed-btn"
+                class="text-btn compact icon-btn bare-icon"
+                type="button"
+                aria-label="Copy seed"
+                title="Copy seed"
+              >
+                <svg
+                  class="icon-glyph icon-copy"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  focusable="false"
+                >
+                  <path
+                    class="copy-back"
+                    d="M10 4h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-1"
+                  ></path>
+                  <path
+                    class="copy-front-fill"
+                    d="M6 8h7l3 3v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"
+                  ></path>
+                  <path
+                    class="copy-front-stroke"
+                    d="M6 8h7l3 3v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z"
+                  ></path>
+                  <path class="copy-front-fold" d="M13 8v3h3"></path>
+                </svg>
+              </button>
               <label class="seed-input-wrap" for="seed-input">
                 <span>Seed</span>
                 <input
@@ -164,23 +192,6 @@
                   inputmode="numeric"
                 />
               </label>
-              <button
-                id="copy-seed-btn"
-                class="text-btn compact icon-btn"
-                type="button"
-                aria-label="Copy seed"
-                title="Copy seed"
-              >
-                <svg
-                  class="icon-glyph icon-copy"
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  focusable="false"
-                >
-                  <rect x="8" y="4" width="12" height="14" rx="2.5"></rect>
-                  <rect x="4" y="8" width="12" height="14" rx="2.5"></rect>
-                </svg>
-              </button>
               <button id="apply-seed-btn" class="text-btn compact" type="button">
                 Apply
               </button>
