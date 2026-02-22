@@ -863,6 +863,8 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 #fact-text {
@@ -888,6 +890,11 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(239, 246, 255, 0.9));
 }
 
+.canvas-intro {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .canvas-header h2 {
   margin: 0;
   font-size: var(--font-size-title-sm);
@@ -905,11 +912,12 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 }
 
 .canvas-tools {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  display: flex;
   align-items: center;
   justify-content: end;
   gap: 6px;
+  flex: 0 0 auto;
+  min-width: max-content;
 }
 
 .seed-input-wrap {
@@ -923,6 +931,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   font-size: var(--font-size-sm);
   color: var(--ink-muted);
   font-family: "IBM Plex Mono", "Consolas", monospace;
+  flex: 0 0 auto;
 }
 
 .seed-input-wrap:focus-within {
@@ -981,6 +990,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  flex: 0 0 auto;
 }
 
 #apply-seed-btn .apply-label {
@@ -2029,6 +2039,7 @@ html[data-theme="dark"] .privacy-updated {
   }
 
   .canvas-tools {
+    display: grid;
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
