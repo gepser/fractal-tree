@@ -473,11 +473,10 @@ select {
 
 .canvas-tools {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
   align-items: center;
   justify-content: end;
   gap: 6px;
-  padding-top: 1px;
 }
 
 .seed-input-wrap {
@@ -526,6 +525,31 @@ select {
 
 .text-btn.compact {
   font-family: "IBM Plex Mono", "Consolas", monospace;
+}
+
+.icon-btn {
+  width: 34px;
+  min-width: 34px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.icon-btn span {
+  display: inline-block;
+  line-height: 1;
+  font-size: 0.92rem;
+  transform: translateY(-0.5px);
+}
+
+#redraw-btn.icon-btn span {
+  font-size: 1rem;
+}
+
+.icon-btn.is-feedback {
+  border-color: rgba(33, 84, 210, 0.46);
+  background: rgba(230, 241, 255, 0.96);
 }
 
 #canvas-host {
@@ -707,7 +731,11 @@ select {
   }
 
   .seed-input-wrap,
-  .text-btn {
+  .text-btn:not(.icon-btn) {
     width: 100%;
+  }
+
+  .icon-btn {
+    justify-self: end;
   }
 }

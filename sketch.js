@@ -238,7 +238,8 @@ function cacheUi() {
   ui.presetButtons = Array.from(document.querySelectorAll("[data-preset]"));
 
   if (ui.copySeedBtn) {
-    ui.copySeedDefaultLabel = ui.copySeedBtn.textContent.trim();
+    ui.copySeedDefaultLabel =
+      ui.copySeedBtn.getAttribute("aria-label") || ui.copySeedBtn.textContent.trim();
   }
 }
 
@@ -435,6 +436,21 @@ async function copySeedToClipboard() {
 
 function flashCopySeedFeedback(label) {
   if (!ui.copySeedBtn) {
+    return;
+  }
+
+  const isIconButton = ui.copySeedBtn.classList.contains("icon-btn");
+
+  if (isIconButton) {
+    ui.copySeedBtn.setAttribute("aria-label", label);
+    ui.copySeedBtn.setAttribute("title", label);
+    ui.copySeedBtn.classList.add("is-feedback");
+
+    window.setTimeout(() => {
+      ui.copySeedBtn.setAttribute("aria-label", ui.copySeedDefaultLabel);
+      ui.copySeedBtn.setAttribute("title", ui.copySeedDefaultLabel);
+      ui.copySeedBtn.classList.remove("is-feedback");
+    }, 1200);
     return;
   }
 
