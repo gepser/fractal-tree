@@ -990,9 +990,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 
 #apply-seed-btn {
   position: relative;
-  min-width: 50px;
-  min-height: 34px;
-  padding: 4px 8px;
+  min-width: 44px;
+  height: 26px;
+  padding: 1px 7px;
   font-size: var(--font-size-xs);
   line-height: 1;
   display: inline-flex;
@@ -1011,8 +1011,8 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   opacity: 0;
   transform: scale(0.72);
   transition: opacity 180ms ease, transform 180ms ease;
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   stroke-width: 2.35;
 }
 
