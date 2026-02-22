@@ -212,6 +212,7 @@ const ui = {
   privacyLastActiveElement: null,
   presetCurrentLabel: null,
   presetButtons: [],
+  presetLabelTransitionTimer: null,
 };
 
 function setup() {
@@ -949,9 +950,56 @@ function setActivePreset(activePreset) {
     }
   });
 
-  if (ui.presetCurrentLabel) {
-    ui.presetCurrentLabel.textContent = activeLabel;
+  updatePresetCurrentLabel(activeLabel);
+}
+
+function updatePresetCurrentLabel(nextLabel) {
+  if (!ui.presetCurrentLabel) {
+    return;
   }
+
+  const labelRoot = ui.presetCurrentLabel;
+  const currentItem =
+    labelRoot.querySelector(".preset-current-label-item.is-next") ||
+    labelRoot.querySelector(".preset-current-label-item");
+  const currentText = currentItem ? currentItem.textContent.trim() : labelRoot.textContent.trim();
+
+  if (currentText === nextLabel) {
+    return;
+  }
+
+  if (ui.presetLabelTransitionTimer) {
+    window.clearTimeout(ui.presetLabelTransitionTimer);
+    ui.presetLabelTransitionTimer = null;
+  }
+
+  labelRoot.classList.remove("is-sliding");
+
+  const exitingItem = document.createElement("span");
+  exitingItem.className = "preset-current-label-item is-exit";
+  exitingItem.textContent = currentText || nextLabel;
+
+  const enteringItem = document.createElement("span");
+  enteringItem.className = "preset-current-label-item is-next";
+  enteringItem.textContent = nextLabel;
+
+  labelRoot.replaceChildren(exitingItem, enteringItem);
+  void labelRoot.offsetWidth;
+  labelRoot.classList.add("is-sliding");
+
+  ui.presetLabelTransitionTimer = window.setTimeout(() => {
+    if (!ui.presetCurrentLabel) {
+      ui.presetLabelTransitionTimer = null;
+      return;
+    }
+
+    const settledItem = document.createElement("span");
+    settledItem.className = "preset-current-label-item";
+    settledItem.textContent = nextLabel;
+    ui.presetCurrentLabel.replaceChildren(settledItem);
+    ui.presetCurrentLabel.classList.remove("is-sliding");
+    ui.presetLabelTransitionTimer = null;
+  }, 260);
 }
 
 function applySeedFromInput() {
