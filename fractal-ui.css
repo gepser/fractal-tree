@@ -422,10 +422,9 @@ select:not(#palette-input),
 
 .preset-block {
   grid-area: presets;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: var(--surface-soft);
-  padding: 7px;
+  border: 0;
+  background: transparent;
+  padding: 2px 0 0;
 }
 
 .preset-block h3,
@@ -485,14 +484,24 @@ select:not(#palette-input),
   grid-area: controls;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
+  gap: 8px 10px;
 }
 
 .control-group {
-  border-radius: 11px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.78);
-  padding: 6px 7px;
+  border: 0;
+  background: transparent;
+  padding: 0 1px 8px;
+  position: relative;
+}
+
+.control-group::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(79, 106, 150, 0.24);
 }
 
 .control-group:last-child {
@@ -656,10 +665,9 @@ input[type="range"]::-moz-range-thumb {
 
 .stats {
   grid-area: stats;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.8);
-  padding: 7px;
+  border: 0;
+  background: transparent;
+  padding: 2px 0 0;
 }
 
 .stat-grid {
@@ -1389,8 +1397,8 @@ html[data-theme="dark"] .p5Select {
 
 html[data-theme="dark"] .preset-block,
 html[data-theme="dark"] .stats {
-  border-color: var(--line);
-  background: var(--surface-soft);
+  border-color: transparent;
+  background: transparent;
 }
 
 html[data-theme="dark"] .preset-block h3,
@@ -1416,8 +1424,12 @@ html[data-theme="dark"] .preset-btn.is-active {
 }
 
 html[data-theme="dark"] .control-group {
-  border-color: var(--line);
-  background: rgba(25, 36, 54, 0.84);
+  border-color: transparent;
+  background: transparent;
+}
+
+html[data-theme="dark"] .control-group::after {
+  background: rgba(161, 180, 214, 0.22);
 }
 
 html[data-theme="dark"] .control-group label {
