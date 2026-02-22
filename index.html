@@ -194,11 +194,37 @@
         <section class="canvas-shell" aria-label="Tree preview">
           <div class="canvas-header">
             <div class="canvas-intro">
-              <h2>Preview</h2>
-              <p class="preview-fact-row" aria-live="polite">
-                <span class="preview-fact-label">Fractal Fact:</span>
-                <span id="fact-text">-</span>
-              </p>
+              <div class="preview-title-row" aria-live="polite">
+                <h2>Preview</h2>
+                <div class="preview-fact-row">
+                  <button
+                    id="next-fact-btn"
+                    class="fact-icon-btn"
+                    type="button"
+                    aria-label="Show another fractal fact"
+                    title="Show another fact"
+                  >
+                    <svg
+                      class="icon-glyph preview-fact-icon"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      focusable="false"
+                    >
+                      <path d="M15.09 14.91A6 6 0 1 0 8.91 14.91"></path>
+                      <path d="M12 2v1"></path>
+                      <path d="M8 3.5l.5.5"></path>
+                      <path d="M16 3.5l-.5.5"></path>
+                      <path d="M2 12h1"></path>
+                      <path d="M21 12h1"></path>
+                      <path d="M4.5 19.5l.5-.5"></path>
+                      <path d="M19.5 19.5l-.5-.5"></path>
+                      <path d="M9 18h6"></path>
+                      <path d="M10 22h4"></path>
+                    </svg>
+                  </button>
+                  <span id="fact-text">-</span>
+                </div>
+              </div>
             </div>
             <div class="canvas-tools">
               <button

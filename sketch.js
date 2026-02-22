@@ -16,6 +16,7 @@ const state = {
 
 let treeCanvas;
 let hostResizeObserver;
+let factCycleOffset = 0;
 
 const paletteStops = {
   forest: ["#4f3221", "#2f7f54", "#abf26d"],
@@ -74,6 +75,8 @@ const ui = {
   branchesValue: null,
   depthValue: null,
   factText: null,
+  nextFactBtn: null,
+  factFeedbackTimer: null,
   seedInput: null,
   applySeedBtn: null,
   applySeedFeedbackTimer: null,
@@ -261,6 +264,7 @@ function cacheUi() {
   ui.branchesValue = document.getElementById("branches-value");
   ui.depthValue = document.getElementById("depth-value");
   ui.factText = document.getElementById("fact-text");
+  ui.nextFactBtn = document.getElementById("next-fact-btn");
   ui.seedInput = document.getElementById("seed-input");
   ui.applySeedBtn = document.getElementById("apply-seed-btn");
   ui.copySeedBtn = document.getElementById("copy-seed-btn");
@@ -385,6 +389,10 @@ function bindUiEvents() {
 
   if (ui.copySeedBtn) {
     ui.copySeedBtn.addEventListener("click", copySeedToClipboard);
+  }
+
+  if (ui.nextFactBtn) {
+    ui.nextFactBtn.addEventListener("click", showNextFact);
   }
 
   bindPaletteSelectEvents();
@@ -737,8 +745,39 @@ function updateFractalFacts() {
     return;
   }
 
-  const factIndex = Math.abs(state.seed) % fractalFactCatalog.length;
+  const factIndex = (Math.abs(state.seed) + factCycleOffset) % fractalFactCatalog.length;
   ui.factText.textContent = fractalFactCatalog[factIndex];
+}
+
+function showNextFact() {
+  factCycleOffset = (factCycleOffset + 1) % fractalFactCatalog.length;
+  updateFractalFacts();
+  flashFactIconFeedback();
+}
+
+function flashFactIconFeedback() {
+  if (!ui.nextFactBtn) {
+    return;
+  }
+
+  if (ui.factFeedbackTimer) {
+    window.clearTimeout(ui.factFeedbackTimer);
+    ui.factFeedbackTimer = null;
+  }
+
+  ui.nextFactBtn.classList.remove("is-feedback");
+  void ui.nextFactBtn.offsetWidth;
+  ui.nextFactBtn.classList.add("is-feedback");
+
+  ui.factFeedbackTimer = window.setTimeout(() => {
+    if (!ui.nextFactBtn) {
+      ui.factFeedbackTimer = null;
+      return;
+    }
+
+    ui.nextFactBtn.classList.remove("is-feedback");
+    ui.factFeedbackTimer = null;
+  }, 700);
 }
 
 function setActivePreset(activePreset) {
