@@ -303,6 +303,7 @@ kbd {
   background: var(--surface);
   backdrop-filter: blur(6px);
   box-shadow: var(--shadow-md);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .panel {
@@ -318,6 +319,7 @@ kbd {
   line-height: 1.08;
   font-family: "Sora", "Manrope", sans-serif;
   color: #153365;
+  letter-spacing: -0.012em;
 }
 
 .panel-heading {
@@ -331,9 +333,14 @@ kbd {
 
 .panel-heading p {
   margin: 2px 0 0;
-  font-size: 0.79rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  line-height: 1.25;
+  line-height: 1.3;
+}
+
+.inline-emphasis {
+  color: #2c56bd;
+  font-weight: 700;
 }
 
 .actions {
@@ -350,11 +357,15 @@ kbd {
   padding: 7px 9px;
   color: #26436b;
   cursor: pointer;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.015em;
   background: linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(244, 249, 255, 0.86));
-  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .btn:hover {
@@ -362,11 +373,16 @@ kbd {
   border-color: rgba(33, 84, 210, 0.34);
 }
 
+.btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
 .btn.primary {
   grid-column: span 2;
   color: #04243f;
   border-color: rgba(23, 173, 199, 0.5);
   background: linear-gradient(120deg, #57d8e9, #4ec8f2 54%, #7fd5ff);
+  box-shadow: 0 5px 13px rgba(29, 126, 191, 0.22);
 }
 
 .btn.ghost {
@@ -440,7 +456,7 @@ select:not(#palette-input),
   color: #31527c;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.85);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -453,6 +469,10 @@ select:not(#palette-input),
 .preset-btn:hover {
   border-color: rgba(33, 84, 210, 0.42);
   transform: translateY(-1px);
+}
+
+.preset-btn:active {
+  transform: translateY(0) scale(0.985);
 }
 
 .preset-btn.is-active {
@@ -485,14 +505,15 @@ select:not(#palette-input),
   align-items: baseline;
   gap: 8px;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.77rem;
   font-weight: 700;
 }
 
 output {
   color: #234776;
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.74rem;
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
 }
 
 input[type="range"] {
@@ -652,19 +673,20 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   justify-content: space-between;
   color: var(--muted-soft);
-  font-size: 0.75rem;
+  font-size: 0.77rem;
   padding: 2px 2px;
 }
 
 .stats strong {
   color: #1f3f6b;
   font-family: "IBM Plex Mono", "Consolas", monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 .preview-fact-row {
   margin: 0;
   color: #4f6488;
-  font-size: 0.77rem;
+  font-size: 0.8rem;
   line-height: 1.3;
   display: flex;
   align-items: center;
@@ -720,6 +742,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 600;
 }
 
 .canvas-shell {
@@ -744,6 +767,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   font-family: "Sora", "Manrope", sans-serif;
   color: #153365;
   flex: 0 0 auto;
+  letter-spacing: -0.012em;
 }
 
 .canvas-header p {
@@ -769,7 +793,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   border: 1px solid rgba(33, 84, 210, 0.28);
   background: rgba(255, 255, 255, 0.88);
   padding: 4px 7px;
-  font-size: 0.78rem;
+  font-size: 0.79rem;
   color: #597096;
   font-family: "IBM Plex Mono", "Consolas", monospace;
 }
@@ -782,7 +806,8 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   color: #234776;
   background: transparent;
   font-family: inherit;
-  font-size: 0.78rem;
+  font-size: 0.79rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .text-btn {
@@ -793,7 +818,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   color: #2a4f7e;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.86);
-  font-size: 0.77rem;
+  font-size: 0.79rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   transition: background-color 0.2s ease, transform 0.18s ease, border-color 0.2s ease;
@@ -805,6 +830,10 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   transform: translateY(-1px);
 }
 
+.text-btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
 .text-btn.compact {
   font-family: "IBM Plex Mono", "Consolas", monospace;
 }
@@ -813,7 +842,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   position: relative;
   min-width: 50px;
   padding: 4px 8px;
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -1047,7 +1076,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 .footer {
   margin-top: 8px;
   color: rgba(60, 79, 110, 0.88);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1069,7 +1098,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   padding: 3px 10px;
   background: rgba(255, 255, 255, 0.84);
   color: #3b587f;
-  font-size: 0.7rem;
+  font-size: 0.73rem;
   font-weight: 700;
   letter-spacing: 0.01em;
 }
@@ -1089,7 +1118,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   color: #3b587f;
   min-height: 23px;
   padding: 3px 10px;
-  font-size: 0.7rem;
+  font-size: 0.73rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
@@ -1260,6 +1289,10 @@ html[data-theme="dark"] .hero-copy-accent {
   color: #d6e2f8;
 }
 
+html[data-theme="dark"] .inline-emphasis {
+  color: #c4d4ef;
+}
+
 html[data-theme="dark"] .theme-toggle-btn {
   color: #c5d4ec;
 }
@@ -1330,6 +1363,7 @@ html[data-theme="dark"] .btn.primary {
   color: #edf4ff;
   border-color: rgba(129, 160, 220, 0.56);
   background: linear-gradient(120deg, #4f78c4, #5c84d0 60%, #6a93d7);
+  box-shadow: 0 6px 14px rgba(28, 45, 74, 0.36);
 }
 
 html[data-theme="dark"] .btn.ghost {
@@ -1460,6 +1494,10 @@ html[data-theme="dark"] .preview-fact-row {
   color: #b8c7de;
 }
 
+html[data-theme="dark"] #fact-text {
+  color: #d6e1f2;
+}
+
 html[data-theme="dark"] button.fact-icon-btn:not(.btn):not(.text-btn) {
   color: #9ebef3;
 }
@@ -1487,6 +1525,13 @@ html[data-theme="dark"] .text-btn {
 html[data-theme="dark"] .text-btn:hover {
   border-color: rgba(187, 205, 230, 0.56);
   background: rgba(38, 52, 73, 0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .panel:hover,
+  .canvas-shell:hover {
+    border-color: var(--line-strong);
+  }
 }
 
 html[data-theme="dark"] #copy-seed-btn {
