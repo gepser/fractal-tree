@@ -47,6 +47,14 @@ const treePresets = {
   },
 };
 
+const fractalFactCatalog = [
+  "Benoit Mandelbrot popularized the term \"fractal\" in 1975.",
+  "Fractal trees are self-similar: each branch echoes the whole structure.",
+  "Many natural systems show fractal behavior, including plants and lightning.",
+  "Simple recursive rules can create complex organic-looking forms.",
+  "Fractal models are widely used in games and VFX for natural scenery.",
+];
+
 const ui = {
   angleInput: null,
   sizeInput: null,
@@ -65,6 +73,9 @@ const ui = {
   seedValue: null,
   branchesValue: null,
   depthValue: null,
+  factText: null,
+  factMetricLabel: null,
+  factMetricValue: null,
   seedInput: null,
   applySeedBtn: null,
   applySeedFeedbackTimer: null,
@@ -251,6 +262,9 @@ function cacheUi() {
   ui.seedValue = document.getElementById("seed-value");
   ui.branchesValue = document.getElementById("branches-value");
   ui.depthValue = document.getElementById("depth-value");
+  ui.factText = document.getElementById("fact-text");
+  ui.factMetricLabel = document.getElementById("fact-metric-label");
+  ui.factMetricValue = document.getElementById("fact-metric-value");
   ui.seedInput = document.getElementById("seed-input");
   ui.applySeedBtn = document.getElementById("apply-seed-btn");
   ui.copySeedBtn = document.getElementById("copy-seed-btn");
@@ -719,6 +733,43 @@ function updateStats() {
   ui.seedValue.textContent = state.seed;
   ui.branchesValue.textContent = state.branchCount;
   ui.depthValue.textContent = state.maxDepth;
+  updateFractalFacts();
+}
+
+function updateFractalFacts() {
+  if (!ui.factText || !ui.factMetricLabel || !ui.factMetricValue) {
+    return;
+  }
+
+  const factIndex = Math.abs(state.seed) % fractalFactCatalog.length;
+  ui.factText.textContent = fractalFactCatalog[factIndex];
+
+  const liveInsights = [
+    {
+      label: "Estimated twig tips",
+      value: `~${Math.round(Math.pow(2, Math.max(0, state.maxDepth))).toLocaleString()}`,
+    },
+    {
+      label: "Canopy angle span",
+      value: `${Math.round((state.angle * 360) / Math.PI)}deg`,
+    },
+    {
+      label: "Length left after 5 splits",
+      value: `${Math.round(Math.pow(state.size, 5) * 100)}%`,
+    },
+    {
+      label: "Current recursion depth",
+      value: `${state.maxDepth} levels`,
+    },
+    {
+      label: "Branches per depth level",
+      value: `${(state.branchCount / Math.max(1, state.maxDepth + 1)).toFixed(1)}`,
+    },
+  ];
+
+  const liveInsight = liveInsights[factIndex % liveInsights.length];
+  ui.factMetricLabel.textContent = liveInsight.label;
+  ui.factMetricValue.textContent = liveInsight.value;
 }
 
 function setActivePreset(activePreset) {

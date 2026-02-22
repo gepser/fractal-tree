@@ -528,6 +528,52 @@ input[type="range"]::-moz-range-thumb {
   font-family: "IBM Plex Mono", "Consolas", monospace;
 }
 
+.facts-card {
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(50, 90, 150, 0.2);
+  background: rgba(245, 250, 255, 0.88);
+  padding: 7px;
+  display: grid;
+  gap: 6px;
+}
+
+.facts-title {
+  margin: 0;
+  color: #1f4b8f;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.fact-text {
+  margin: 0;
+  color: #4f6488;
+  font-size: 0.67rem;
+  line-height: 1.35;
+}
+
+.fact-live {
+  margin: 0;
+  border-radius: 8px;
+  border: 1px solid rgba(33, 84, 210, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 5px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #5a7093;
+  font-size: 0.64rem;
+}
+
+#fact-metric-value {
+  color: #1b3f7b;
+  font-family: "IBM Plex Mono", "Consolas", monospace;
+  font-size: 0.66rem;
+}
+
 .canvas-shell {
   overflow: hidden;
   display: flex;
