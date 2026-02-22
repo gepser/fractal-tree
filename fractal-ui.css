@@ -561,21 +561,7 @@ select {
 #copy-seed-btn .icon-copy {
   width: 18px;
   height: 18px;
-  stroke-width: 2.2;
-}
-
-#copy-seed-btn .icon-copy .copy-back,
-#copy-seed-btn .icon-copy .copy-front-stroke,
-#copy-seed-btn .icon-copy .copy-front-fold {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-#copy-seed-btn .icon-copy .copy-front-fill {
-  fill: rgba(247, 252, 255, 0.98);
-  stroke: none;
+  stroke-width: 2;
 }
 
 #redraw-btn.icon-btn {
