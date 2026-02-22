@@ -8,13 +8,7 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./fractal-ui.css?v=20260224" />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260227" />
   </head>
   <body>
     <main class="app">
@@ -126,8 +120,59 @@
             </div>
 
             <div class="control-group">
-              <label for="palette-input">Palette</label>
-              <select id="palette-input">
+              <label for="palette-trigger">Palette</label>
+              <div id="palette-select" class="palette-select">
+                <button
+                  id="palette-trigger"
+                  class="palette-trigger"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="palette-listbox"
+                >
+                  <span id="palette-selected-label">Rainbow</span>
+                  <span class="palette-caret" aria-hidden="true">▾</span>
+                </button>
+                <div id="palette-listbox" class="palette-listbox" role="listbox" tabindex="-1">
+                  <button
+                    class="palette-option is-active"
+                    type="button"
+                    role="option"
+                    aria-selected="true"
+                    data-value="rainbow"
+                  >
+                    Rainbow
+                  </button>
+                  <button
+                    class="palette-option"
+                    type="button"
+                    role="option"
+                    aria-selected="false"
+                    data-value="forest"
+                  >
+                    Forest
+                  </button>
+                  <button
+                    class="palette-option"
+                    type="button"
+                    role="option"
+                    aria-selected="false"
+                    data-value="sunset"
+                  >
+                    Sunset
+                  </button>
+                  <button
+                    class="palette-option"
+                    type="button"
+                    role="option"
+                    aria-selected="false"
+                    data-value="mono"
+                  >
+                    Mono Ink
+                  </button>
+                </div>
+              </div>
+              <select id="palette-input" class="palette-native-select" aria-hidden="true" tabindex="-1">
                 <option value="rainbow">Rainbow</option>
                 <option value="forest">Forest</option>
                 <option value="sunset">Sunset</option>
@@ -181,12 +226,27 @@
                   inputmode="numeric"
                 />
               </label>
-              <button id="apply-seed-btn" class="text-btn compact" type="button">
-                Apply
+              <button
+                id="apply-seed-btn"
+                class="text-btn compact"
+                type="button"
+                aria-label="Apply seed"
+              >
+                <span class="apply-label">Apply</span>
+                <svg
+                  class="icon-glyph apply-check-icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  focusable="false"
+                >
+                  <path d="M2 12L7 17L12 12"></path>
+                  <path d="M12 12L17 17L22 12"></path>
+                  <path d="M7 17L17 7"></path>
+                </svg>
               </button>
               <button
                 id="redraw-btn"
-                class="text-btn compact icon-btn"
+                class="text-btn compact icon-btn bare-icon"
                 type="button"
                 aria-label="Generate new seed"
                 title="Generate new seed"
@@ -214,10 +274,101 @@
           Built with <a href="https://p5js.org/" target="_blank">p5.js</a>.
           Crafted for fast visual iteration.
         </p>
+        <div class="privacy-inline">
+          <span class="privacy-note">No cookies. No tracking.</span>
+          <svg
+            class="icon-glyph privacy-arrow"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <path d="M5 12H19"></path>
+            <path d="M12 5L19 12L12 19"></path>
+          </svg>
+          <button
+            id="open-privacy-btn"
+            class="privacy-link-btn"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="privacy-modal"
+          >
+            Privacy policy
+          </button>
+        </div>
       </footer>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
-    <script src="./sketch.js?v=20260223"></script>
+    <div id="privacy-modal" class="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+      <section class="privacy-dialog">
+        <header class="privacy-head">
+          <h2 id="privacy-title">Privacy Policy</h2>
+          <button id="close-privacy-btn" class="privacy-close-btn" type="button">
+            Close
+          </button>
+        </header>
+        <div class="privacy-body">
+          <p class="privacy-intro">
+            Fractal Tree is a static, client-side visual generator. Core rendering and controls run in your browser.
+          </p>
+
+          <article class="privacy-item">
+            <h3>No personal data collected</h3>
+            <p>
+              This app does not include account signup, user profiles, contact forms, or analytics trackers.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>No cookies by this app</h3>
+            <p>
+              The application does not set or read cookies for app features.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>No persistent app storage</h3>
+            <p>
+              Tree parameters are kept in runtime memory only. This app does not write settings to localStorage or sessionStorage.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>Clipboard access is user-triggered</h3>
+            <p>
+              Clipboard writes happen only when you press the copy seed button.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>Hosting</h3>
+            <p>
+              This site is deployed on Vercel. Vercel may process technical request metadata (such as IP address and user-agent) to deliver and secure the service.
+              See
+              <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noreferrer">Vercel Privacy Policy</a>.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>Third-party resources</h3>
+            <p>
+              The interface uses local system fonts and a self-hosted p5.js build served from this site.
+              No external runtime script or font CDN is required by the app.
+            </p>
+          </article>
+
+          <article class="privacy-item">
+            <h3>Data retention</h3>
+            <p>
+              Generated PNG files are downloaded directly to your device when you click save. No tree data is sent to an application backend.
+            </p>
+          </article>
+
+          <p class="privacy-updated">Last updated: February 22, 2026</p>
+        </div>
+      </section>
+    </div>
+
+    <script src="./assets/vendor/p5.min.js?v=1.6.0"></script>
+    <script src="./sketch.js?v=20260226"></script>
   </body>
 </html>
