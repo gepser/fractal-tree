@@ -1,12 +1,199 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
-    <script src="sketch.js"></script>
-  <style> body {padding: 0; margin: 0;} </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fractal Tree Remastered</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='0.9em' font-size='52'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Sora:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./fractal-ui.css?v=20260223" />
   </head>
   <body>
+    <main class="app">
+      <section class="hero reveal">
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">Generative Art Playground</p>
+          <h1>Fractal Tree <span>Remastered</span></h1>
+          <p class="hero-copy">
+            Your first fractal tree generator, rebuilt with live controls,
+            meaningful presets, and export-ready output.
+          </p>
+          <div class="hero-badges" aria-label="Highlighted features">
+            <span>Live controls</span>
+            <span>Curated palettes</span>
+            <span>PNG export</span>
+          </div>
+        </div>
+
+        <aside class="hero-hints" aria-label="Keyboard shortcuts">
+          <h2>Shortcuts</h2>
+          <p><kbd>R</kbd> New random tree</p>
+          <p><kbd>M</kbd> Soft mutation</p>
+          <p><kbd>S</kbd> Save PNG</p>
+        </aside>
+      </section>
+
+      <section class="workspace reveal reveal-delay-1">
+        <aside class="panel" aria-label="Control panel">
+          <div class="panel-heading">
+            <h2>Controls</h2>
+            <p>Explore new variations without losing momentum.</p>
+          </div>
+
+          <div class="actions">
+            <button id="randomize-btn" class="btn primary" type="button">
+              New random tree
+            </button>
+            <button id="mutate-btn" class="btn" type="button">Mutate</button>
+            <button id="reset-btn" class="btn" type="button">Reset</button>
+            <button id="download-btn" class="btn ghost" type="button">
+              Save PNG
+            </button>
+          </div>
+
+          <div class="preset-block" aria-label="Tree presets">
+            <h3>Presets</h3>
+            <div class="preset-actions">
+              <button class="preset-btn" type="button" data-preset="classic">
+                Classic
+              </button>
+              <button class="preset-btn" type="button" data-preset="dense">
+                Dense canopy
+              </button>
+              <button class="preset-btn" type="button" data-preset="minimal">
+                Minimal winter
+              </button>
+            </div>
+          </div>
+
+          <form id="controls-form" class="controls" autocomplete="off">
+            <div class="control-group">
+              <label for="angle-input">
+                Angle
+                <output id="angle-out" for="angle-input"></output>
+              </label>
+              <input
+                id="angle-input"
+                type="range"
+                min="0.15"
+                max="1.30"
+                step="0.01"
+              />
+            </div>
+
+            <div class="control-group">
+              <label for="size-input">
+                Branch reduction
+                <output id="size-out" for="size-input"></output>
+              </label>
+              <input
+                id="size-input"
+                type="range"
+                min="0.58"
+                max="0.85"
+                step="0.01"
+              />
+            </div>
+
+            <div class="control-group">
+              <label for="stop-input">
+                Minimum length
+                <output id="stop-out" for="stop-input"></output>
+              </label>
+              <input
+                id="stop-input"
+                type="range"
+                min="8"
+                max="42"
+                step="1"
+              />
+            </div>
+
+            <div class="control-group">
+              <label for="weight-input">
+                Base thickness
+                <output id="weight-out" for="weight-input"></output>
+              </label>
+              <input
+                id="weight-input"
+                type="range"
+                min="1.5"
+                max="10"
+                step="0.1"
+              />
+            </div>
+
+            <div class="control-group">
+              <label for="palette-input">Palette</label>
+              <select id="palette-input">
+                <option value="rainbow">Rainbow</option>
+                <option value="forest">Forest</option>
+                <option value="sunset">Sunset</option>
+                <option value="mono">Mono Ink</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="stats">
+            <h3>Stats</h3>
+            <div class="stat-grid">
+              <p><span>Seed</span><strong id="seed-value">-</strong></p>
+              <p><span>Branches</span><strong id="branches-value">-</strong></p>
+              <p><span>Depth</span><strong id="depth-value">-</strong></p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="canvas-shell" aria-label="Tree preview">
+          <div class="canvas-header">
+            <div>
+              <h2>Preview</h2>
+              <p>Each seed generates a distinct composition.</p>
+            </div>
+            <div class="canvas-tools">
+              <label class="seed-input-wrap" for="seed-input">
+                <span>Seed</span>
+                <input
+                  id="seed-input"
+                  type="number"
+                  min="1000"
+                  max="999999"
+                  step="1"
+                  inputmode="numeric"
+                />
+              </label>
+              <button id="apply-seed-btn" class="text-btn compact" type="button">
+                Apply
+              </button>
+              <button id="redraw-btn" class="text-btn compact" type="button">
+                New seed
+              </button>
+              <button id="copy-seed-btn" class="text-btn compact" type="button">
+                Copy seed
+              </button>
+            </div>
+          </div>
+          <div id="canvas-host"></div>
+        </section>
+      </section>
+
+      <footer class="footer reveal reveal-delay-2">
+        <p>
+          Built with <a href="https://p5js.org/" target="_blank">p5.js</a>.
+          Retro experiment, modern interface.
+        </p>
+      </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="./sketch.js?v=20260223"></script>
   </body>
 </html>

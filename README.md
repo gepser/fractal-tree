@@ -1,20 +1,52 @@
-# Fractal tree
-Random fractal tree generator with [p5js](https://p5js.org/).
+# Fractal Tree Remastered 🌳
 
-## Live Example
+[![Made with p5.js](https://img.shields.io/badge/Made%20with-p5.js-ed225d?logo=p5.js&logoColor=white)](https://p5js.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f.svg)](./LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-0ea5e9)](https://fractal.gepser.dev/)
 
-You can see it here [https://fractal.gepser.dev/](https://fractal.gepser.dev/) and hit refresh to generate a new tree.
+A retro coding project rebuilt as a clean, interactive generative-art playground.
 
-## Running it local
+## Highlights ✨
 
-Clone it and open `index.html` in any browser.
+- Live controls for angle, branch reduction, minimum branch length, and base thickness.
+- Palette switcher with four styles: `Rainbow`, `Forest`, `Sunset`, and `Mono Ink`.
+- One-click preset buttons: `Classic`, `Dense canopy`, `Minimal winter`.
+- Seed tools to apply an exact seed and copy it for sharing.
+- Export any render as PNG.
+- Keyboard shortcuts for fast iteration:
+  - `R` new random tree
+  - `M` mutate current tree
+  - `S` save PNG
 
-## Getting a new tree
+## Quick Start 🚀
 
-Refresh the page and you will get a new tree everytime. You can see the values used to generate the tree in the console.
+```bash
+python3 -m http.server 4173
+```
 
-## Examples
+Then open [http://localhost:4173](http://localhost:4173).
 
-![examples][examples]
+## Test Locally Before Deploy 🧪
 
-[examples]: ./images/fractal-tree-examples.jpeg
+1. Start the local server.
+2. Open [http://localhost:4173](http://localhost:4173).
+3. Verify these actions:
+   - sliders update the tree in real time
+   - presets change style instantly
+   - `Apply` uses your manual seed value
+   - `Copy seed` copies the current seed
+   - `Save PNG` downloads an image
+4. Force refresh if you see old assets:
+   - macOS: `Cmd + Shift + R`
+   - Windows/Linux: `Ctrl + F5`
+
+## Stack 📦
+
+- HTML
+- CSS
+- JavaScript
+- [p5.js](https://p5js.org/)
+
+## License 📄
+
+MIT. See [`LICENSE`](./LICENSE).
