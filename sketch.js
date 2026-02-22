@@ -3,7 +3,7 @@ const defaults = {
   size: 0.72,
   stopLen: 22,
   lineWeight: 4.8,
-  initialBranchSize: 220,
+  initialBranchSize: 198,
   palette: "rainbow",
 };
 
@@ -99,7 +99,7 @@ function draw() {
 
   randomSeed(state.seed);
   const fitScale = computeTreeFitScale();
-  translate(width / 2, height - 10);
+  translate(width / 2, height - 24);
   scale(fitScale);
   branch(state.initialBranchSize, 0);
 
@@ -166,7 +166,7 @@ function randomizeConfig() {
   state.size = randomFloat(0.61, 0.82);
   state.stopLen = randomInt(10, 38);
   state.lineWeight = randomFloat(2.2, 8.4);
-  state.initialBranchSize = randomFloat(height * 0.24, height * 0.4);
+  state.initialBranchSize = randomFloat(height * 0.22, height * 0.35);
   state.palette = randomItem(Object.keys(paletteStops).concat("rainbow"));
   setActivePreset(null);
 
@@ -211,7 +211,7 @@ function applyPreset(presetName) {
   state.size = preset.size;
   state.stopLen = preset.stopLen;
   state.lineWeight = preset.lineWeight;
-  state.initialBranchSize = randomFloat(height * 0.24, height * 0.4);
+  state.initialBranchSize = randomFloat(height * 0.22, height * 0.35);
   state.palette = preset.palette;
   setActivePreset(presetName);
 
@@ -451,7 +451,7 @@ function resizeToHost() {
   const hostHeight = host ? host.clientHeight : 0;
   const maxByWidth = Math.floor(hostWidth - 24);
   const fallbackByHeight = Math.floor(
-    window.innerHeight * (window.innerWidth > 1080 ? 0.54 : 0.72),
+    window.innerHeight * (window.innerWidth > 1080 ? 0.56 : 0.74),
   );
   const maxByHeight = hostHeight > 40 ? Math.floor(hostHeight - 24) : fallbackByHeight;
   const side = clamp(Math.min(maxByWidth, maxByHeight), 240, 760);
@@ -492,11 +492,11 @@ function computeTreeFitScale() {
   const angleFactor = clamp(Math.sin(Math.abs(state.angle)) * 0.72 + 0.22, 0.25, 0.95);
   const estimatedHalfWidth = Math.max(
     state.initialBranchSize * 0.4,
-    pathLength * angleFactor * 1.08,
+    pathLength * angleFactor * 1.05,
   );
-  const fitByHeight = (height * 0.86) / pathLength;
-  const fitByWidth = (width * 0.42) / estimatedHalfWidth;
-  return clamp(Math.min(1, fitByHeight, fitByWidth), 0.36, 1);
+  const fitByHeight = (height * 0.78) / pathLength;
+  const fitByWidth = (width * 0.45) / estimatedHalfWidth;
+  return clamp(Math.min(1, fitByHeight, fitByWidth), 0.24, 1);
 }
 
 function estimatePathLength(initialLen, stopLen, sizeFactor) {
