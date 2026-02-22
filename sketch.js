@@ -15,6 +15,7 @@ const state = {
 };
 
 let treeCanvas;
+let hostResizeObserver;
 
 const paletteStops = {
   forest: ["#4f3221", "#2f7f54", "#abf26d"],
@@ -75,9 +76,15 @@ function setup() {
   cacheUi();
   bindUiEvents();
   bindKeyboardShortcuts();
+  observeHostResize();
   resizeToHost();
   randomizeConfig();
   renderTree();
+
+  window.requestAnimationFrame(() => {
+    resizeToHost();
+    renderTree();
+  });
 }
 
 function windowResized() {
@@ -91,7 +98,9 @@ function draw() {
   state.maxDepth = 0;
 
   randomSeed(state.seed);
-  translate(width / 2, height);
+  const fitScale = computeTreeFitScale();
+  translate(width / 2, height - 10);
+  scale(fitScale);
   branch(state.initialBranchSize, 0);
 
   updateStats();
@@ -439,9 +448,73 @@ function flashCopySeedFeedback(label) {
 function resizeToHost() {
   const host = document.getElementById("canvas-host");
   const hostWidth = host ? host.clientWidth : window.innerWidth;
-  const side = clamp(Math.floor(hostWidth - 28), 280, 760);
+  const hostHeight = host ? host.clientHeight : 0;
+  const maxByWidth = Math.floor(hostWidth - 24);
+  const fallbackByHeight = Math.floor(
+    window.innerHeight * (window.innerWidth > 1080 ? 0.54 : 0.72),
+  );
+  const maxByHeight = hostHeight > 40 ? Math.floor(hostHeight - 24) : fallbackByHeight;
+  const side = clamp(Math.min(maxByWidth, maxByHeight), 240, 760);
+
+  if (Math.abs(width - side) < 1 && Math.abs(height - side) < 1) {
+    return;
+  }
+
   resizeCanvas(side, side);
+  if (treeCanvas) {
+    treeCanvas.style("width", `${side}px`);
+    treeCanvas.style("height", `${side}px`);
+  }
   state.initialBranchSize = clamp(state.initialBranchSize, side * 0.2, side * 0.45);
+}
+
+function observeHostResize() {
+  const host = document.getElementById("canvas-host");
+
+  if (!host || typeof ResizeObserver === "undefined") {
+    return;
+  }
+
+  if (hostResizeObserver) {
+    hostResizeObserver.disconnect();
+  }
+
+  hostResizeObserver = new ResizeObserver(() => {
+    resizeToHost();
+    renderTree();
+  });
+
+  hostResizeObserver.observe(host);
+}
+
+function computeTreeFitScale() {
+  const pathLength = estimatePathLength(state.initialBranchSize, state.stopLen, state.size);
+  const angleFactor = clamp(Math.sin(Math.abs(state.angle)) * 0.72 + 0.22, 0.25, 0.95);
+  const estimatedHalfWidth = Math.max(
+    state.initialBranchSize * 0.4,
+    pathLength * angleFactor * 1.08,
+  );
+  const fitByHeight = (height * 0.86) / pathLength;
+  const fitByWidth = (width * 0.42) / estimatedHalfWidth;
+  return clamp(Math.min(1, fitByHeight, fitByWidth), 0.36, 1);
+}
+
+function estimatePathLength(initialLen, stopLen, sizeFactor) {
+  if (sizeFactor <= 0 || sizeFactor >= 1) {
+    return initialLen;
+  }
+
+  let total = 0;
+  let segment = initialLen;
+  let guard = 0;
+
+  while (segment > stopLen && guard < 80) {
+    total += segment;
+    segment *= sizeFactor;
+    guard += 1;
+  }
+
+  return total + segment;
 }
 
 function randomFloat(min, max) {
