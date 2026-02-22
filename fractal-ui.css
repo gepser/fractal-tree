@@ -21,6 +21,14 @@
   --canvas-1: #071c34;
   --shadow-lg: 0 20px 46px rgba(23, 51, 95, 0.18);
   --shadow-md: 0 14px 32px rgba(25, 53, 95, 0.12);
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.86rem;
+  --font-size-md: 0.9rem;
+  --font-size-title-sm: 1.14rem;
+  --ink-heading: #153365;
+  --ink-body: #2a4f7e;
+  --ink-muted: #597096;
+  --ink-link: #1f4ab7;
 }
 
 html[data-theme="dark"] {
@@ -61,6 +69,18 @@ select {
 
 a {
   color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 html,
@@ -166,13 +186,13 @@ html[data-theme="dark"] body::before {
   border-radius: 999px;
   background: transparent;
   color: #275093;
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
   padding: 0;
   display: inline-grid;
   place-items: center;
-  flex: 0 0 30px;
+  flex: 0 0 44px;
   cursor: pointer;
   transition:
     color 220ms ease,
@@ -277,7 +297,7 @@ html[data-theme="dark"] body::before {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-size: 0.84rem;
+  font-size: var(--font-size-md);
   color: var(--muted);
 }
 
@@ -287,7 +307,7 @@ kbd {
   background: rgba(255, 255, 255, 0.9);
   color: #1f4ab1;
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.76rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   padding: 2px 8px;
   transition:
@@ -331,10 +351,10 @@ kbd.is-shortcut-active {
 
 .panel-heading h2 {
   margin: 0;
-  font-size: 1.14rem;
+  font-size: var(--font-size-title-sm);
   line-height: 1.08;
   font-family: "Sora", "Manrope", sans-serif;
-  color: #153365;
+  color: var(--ink-heading);
   letter-spacing: -0.012em;
 }
 
@@ -349,7 +369,7 @@ kbd.is-shortcut-active {
 
 .panel-heading p {
   margin: 2px 0 0;
-  font-size: 0.82rem;
+  font-size: var(--font-size-md);
   color: var(--muted);
   line-height: 1.3;
 }
@@ -373,7 +393,7 @@ kbd.is-shortcut-active {
   padding: 7px 9px;
   color: #26436b;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   letter-spacing: 0.015em;
   background: linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(244, 249, 255, 0.86));
@@ -446,7 +466,7 @@ select:not(#palette-input),
 .preset-block h3,
 .stats h3 {
   margin: 0 0 6px;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   color: #1e4b8f;
   letter-spacing: 0.015em;
   text-transform: uppercase;
@@ -472,8 +492,8 @@ select:not(#palette-input),
 .preset-dots::before {
   content: "";
   position: absolute;
-  left: 9px;
-  right: 9px;
+  left: 12px;
+  right: 12px;
   top: 50%;
   height: 2px;
   border-radius: 999px;
@@ -491,7 +511,7 @@ select:not(#palette-input),
   overflow: hidden;
   text-align: center;
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.79rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   letter-spacing: 0.01em;
   color: #2a4f86;
@@ -530,9 +550,9 @@ select:not(#palette-input),
 
 .preset-btn {
   appearance: none;
-  width: 18px;
-  min-width: 18px;
-  height: 18px;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
   border-radius: 999px;
   border: 2px solid rgba(33, 84, 210, 0.44);
   outline: 6px solid rgba(33, 84, 210, 0.18);
@@ -550,6 +570,11 @@ select:not(#palette-input),
     background-color 0.18s ease,
     border-color 0.18s ease,
     transform 0.18s ease;
+}
+
+.preset-btn:focus-visible {
+  outline-color: rgba(33, 84, 210, 0.44);
+  outline-width: 7px;
 }
 
 .preset-btn:hover {
@@ -602,14 +627,14 @@ select:not(#palette-input),
   align-items: baseline;
   gap: 8px;
   color: var(--muted);
-  font-size: 0.77rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
 }
 
 output {
   color: #234776;
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.76rem;
+  font-size: var(--font-size-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -666,9 +691,9 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 10px;
   border: 1px solid rgba(33, 84, 210, 0.32);
   background: rgba(255, 255, 255, 0.92);
-  color: #2d527f;
+  color: var(--ink-body);
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   padding: 7px 9px;
   display: flex;
   align-items: center;
@@ -677,8 +702,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .palette-caret {
-  font-size: 0.78rem;
-  color: #47618a;
+  font-size: var(--font-size-sm);
+  color: var(--muted);
   transition: transform 150ms ease;
 }
 
@@ -712,9 +737,9 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 0;
   border: 0;
   background: transparent;
-  color: #2f4d79;
+  color: var(--ink-body);
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.79rem;
+  font-size: var(--font-size-sm);
   padding: 8px 11px;
   box-shadow: none;
 }
@@ -769,12 +794,12 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   justify-content: space-between;
   color: var(--muted-soft);
-  font-size: 0.77rem;
+  font-size: var(--font-size-sm);
   padding: 2px 2px;
 }
 
 .stats strong {
-  color: #1f3f6b;
+  color: #234776;
   font-family: "IBM Plex Mono", "Consolas", monospace;
   font-variant-numeric: tabular-nums;
 }
@@ -782,7 +807,7 @@ input[type="range"]::-moz-range-thumb {
 .preview-fact-row {
   margin: 0;
   color: #4f6488;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   line-height: 1.3;
   display: flex;
   align-items: center;
@@ -796,9 +821,9 @@ input[type="range"]::-moz-range-thumb {
 
 button.fact-icon-btn:not(.btn):not(.text-btn) {
   appearance: none;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   padding: 0;
   border: 0;
   border-radius: 999px;
@@ -814,14 +839,20 @@ button.fact-icon-btn:not(.btn):not(.text-btn):hover {
   background: rgba(33, 84, 210, 0.12);
 }
 
+button.fact-icon-btn:not(.btn):not(.text-btn):focus-visible {
+  outline: 2px solid rgba(33, 84, 210, 0.4);
+  outline-offset: 2px;
+  background: rgba(33, 84, 210, 0.14);
+}
+
 button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   background: rgba(214, 244, 232, 0.98);
   color: #0f6d4d;
 }
 
 .preview-fact-icon {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   flex: 0 0 auto;
   color: inherit;
   stroke-width: 2.1;
@@ -859,9 +890,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 
 .canvas-header h2 {
   margin: 0;
-  font-size: 1.14rem;
+  font-size: var(--font-size-title-sm);
   font-family: "Sora", "Manrope", sans-serif;
-  color: #153365;
+  color: var(--ink-heading);
   flex: 0 0 auto;
   letter-spacing: -0.012em;
 }
@@ -869,7 +900,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 .canvas-header p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.79rem;
+  font-size: var(--font-size-sm);
   line-height: 1.25;
 }
 
@@ -888,21 +919,26 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   border-radius: 10px;
   border: 1px solid rgba(33, 84, 210, 0.28);
   background: rgba(255, 255, 255, 0.88);
-  padding: 4px 7px;
-  font-size: 0.79rem;
-  color: #597096;
+  padding: 4px 8px;
+  font-size: var(--font-size-sm);
+  color: var(--ink-muted);
   font-family: "IBM Plex Mono", "Consolas", monospace;
+}
+
+.seed-input-wrap:focus-within {
+  border-color: rgba(33, 84, 210, 0.5);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 0 0 2px rgba(33, 84, 210, 0.18);
 }
 
 #seed-input {
   width: 84px;
   border: 0;
-  outline: 0;
   padding: 0;
   color: #234776;
   background: transparent;
   font-family: inherit;
-  font-size: 0.79rem;
+  font-size: var(--font-size-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -911,10 +947,10 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   border-radius: 10px;
   border: 1px solid rgba(33, 84, 210, 0.26);
   padding: 6px 9px;
-  color: #2a4f7e;
+  color: var(--ink-body);
   cursor: pointer;
   background: rgba(255, 255, 255, 0.86);
-  font-size: 0.79rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   letter-spacing: 0.01em;
   transition: background-color 0.2s ease, transform 0.18s ease, border-color 0.2s ease;
@@ -937,8 +973,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 #apply-seed-btn {
   position: relative;
   min-width: 50px;
+  min-height: 34px;
   padding: 4px 8px;
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   line-height: 1;
   display: inline-flex;
   align-items: center;
@@ -978,8 +1015,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 }
 
 .icon-btn {
-  width: 34px;
-  min-width: 34px;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
   display: inline-grid;
   place-items: center;
@@ -1002,8 +1040,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 }
 
 #copy-seed-btn.bare-icon {
-  width: 28px;
-  min-width: 28px;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-color: transparent;
   background: transparent;
   position: relative;
@@ -1021,8 +1060,9 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 }
 
 #redraw-btn.bare-icon {
-  width: 28px;
-  min-width: 28px;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-color: transparent;
   background: transparent;
 }
@@ -1053,6 +1093,12 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   background: rgba(223, 237, 255, 0.78);
 }
 
+.bare-icon.icon-btn:focus-visible {
+  outline: 2px solid rgba(33, 84, 210, 0.4);
+  outline-offset: 1px;
+  background: rgba(223, 237, 255, 0.82);
+}
+
 .bare-icon.icon-btn::after {
   content: attr(data-feedback);
   position: absolute;
@@ -1068,7 +1114,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   background: linear-gradient(140deg, rgba(232, 251, 243, 0.98), rgba(216, 246, 234, 0.98));
   color: #0f6d4d;
   font-family: "IBM Plex Mono", "Consolas", monospace;
-  font-size: 0.74rem;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   line-height: 1;
   padding: 6px 10px;
@@ -1172,7 +1218,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 .footer {
   margin-top: 8px;
   color: rgba(60, 79, 110, 0.88);
-  font-size: 0.78rem;
+  font-size: var(--font-size-sm);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1180,7 +1226,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 }
 
 .footer a {
-  color: #1f4ab7;
+  color: var(--ink-link);
   font-weight: 700;
 }
 
@@ -1190,11 +1236,11 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   justify-content: center;
   border: 1px solid rgba(33, 84, 210, 0.24);
   border-radius: 999px;
-  min-height: 23px;
-  padding: 3px 10px;
+  min-height: 30px;
+  padding: 5px 10px;
   background: rgba(255, 255, 255, 0.84);
-  color: #3b587f;
-  font-size: 0.73rem;
+  color: var(--ink-muted);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
@@ -1211,10 +1257,10 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   border-radius: 999px;
   border: 1px solid rgba(33, 84, 210, 0.24);
   background: rgba(255, 255, 255, 0.84);
-  color: #3b587f;
-  min-height: 23px;
-  padding: 3px 10px;
-  font-size: 0.73rem;
+  color: var(--ink-muted);
+  min-height: 30px;
+  padding: 5px 10px;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
@@ -1224,7 +1270,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 .privacy-link-btn:hover {
   border-color: rgba(33, 84, 210, 0.44);
   background: rgba(255, 255, 255, 0.98);
-  color: #1f4ab7;
+  color: var(--ink-link);
   transform: translateY(-1px);
 }
 
@@ -1289,14 +1335,14 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
   margin: 0;
   font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-family: "Sora", "Manrope", sans-serif;
-  color: #142f5c;
+  color: var(--ink-heading);
 }
 
 .privacy-close-btn {
   border-radius: 999px;
   border: 1px solid rgba(33, 84, 210, 0.28);
   background: rgba(255, 255, 255, 0.86);
-  color: #224e9d;
+  color: var(--ink-link);
   padding: 7px 12px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -1318,7 +1364,7 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 
 .privacy-intro {
   margin: 0;
-  color: #4a648f;
+  color: var(--muted);
   font-size: 0.97rem;
   line-height: 1.4;
 }
@@ -1335,26 +1381,26 @@ button.fact-icon-btn:not(.btn):not(.text-btn).is-feedback {
 .privacy-item h3 {
   margin: 0;
   font-size: 1rem;
-  color: #193f7d;
+  color: var(--ink-link);
 }
 
 .privacy-item p {
   margin: 0;
-  color: #4c6188;
+  color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.45;
 }
 
 .privacy-item a {
-  color: #1f4ab7;
+  color: var(--ink-link);
   font-weight: 700;
 }
 
 .privacy-updated {
   margin: 4px 0 2px;
   text-align: center;
-  color: #5d7196;
-  font-size: 0.78rem;
+  color: var(--muted);
+  font-size: var(--font-size-xs);
   letter-spacing: 0.01em;
 }
 
@@ -1681,6 +1727,12 @@ html[data-theme="dark"] .seed-input-wrap {
   color: #b2c3de;
 }
 
+html[data-theme="dark"] .seed-input-wrap:focus-within {
+  border-color: rgba(176, 197, 235, 0.62);
+  background: rgba(35, 49, 71, 0.96);
+  box-shadow: 0 0 0 2px rgba(135, 164, 216, 0.22);
+}
+
 html[data-theme="dark"] #seed-input {
   color: #e0e9f8;
 }
@@ -1941,10 +1993,10 @@ html[data-theme="dark"] .privacy-updated {
   }
 
   .theme-toggle-btn {
-    width: 30px;
-    min-width: 30px;
-    height: 30px;
-    flex-basis: 30px;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    flex-basis: 40px;
   }
 
   .hero-hints {

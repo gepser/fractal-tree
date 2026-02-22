@@ -88,31 +88,46 @@
               <span id="preset-current-label" class="preset-current-label" aria-live="polite">
                 <span class="preset-current-label-item">Custom</span>
               </span>
-              <div class="preset-dots" aria-label="Preset selector">
+              <div class="preset-dots" role="radiogroup" aria-label="Preset selector">
                 <button
                   class="preset-btn"
                   type="button"
                   data-preset="classic"
                   data-label="Classic"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="0"
                   aria-label="Classic preset"
                   title="Classic preset"
-                ></button>
+                >
+                  <span class="sr-only">Classic preset</span>
+                </button>
                 <button
                   class="preset-btn"
                   type="button"
                   data-preset="dense"
                   data-label="Dense"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
                   aria-label="Dense preset"
                   title="Dense preset"
-                ></button>
+                >
+                  <span class="sr-only">Dense preset</span>
+                </button>
                 <button
                   class="preset-btn"
                   type="button"
                   data-preset="minimal"
                   data-label="Minimal"
+                  role="radio"
+                  aria-checked="false"
+                  tabindex="-1"
                   aria-label="Minimal preset"
                   title="Minimal preset"
-                ></button>
+                >
+                  <span class="sr-only">Minimal preset</span>
+                </button>
               </div>
             </div>
           </div>
