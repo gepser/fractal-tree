@@ -210,6 +210,7 @@ const ui = {
   privacyModal: null,
   privacyHideTimer: null,
   privacyLastActiveElement: null,
+  presetActions: null,
   presetButtons: [],
 };
 
@@ -393,6 +394,7 @@ function cacheUi() {
   ui.openPrivacyBtn = document.getElementById("open-privacy-btn");
   ui.closePrivacyBtn = document.getElementById("close-privacy-btn");
   ui.privacyModal = document.getElementById("privacy-modal");
+  ui.presetActions = document.getElementById("preset-actions");
   ui.presetButtons = Array.from(document.querySelectorAll("[data-preset]"));
 
   if (ui.applySeedBtn) {
@@ -935,11 +937,22 @@ function flashFactIconFeedback() {
 }
 
 function setActivePreset(activePreset) {
-  ui.presetButtons.forEach((button) => {
+  let activeIndex = -1;
+
+  ui.presetButtons.forEach((button, index) => {
     const isActive = button.dataset.preset === activePreset;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", `${isActive}`);
+
+    if (isActive && activeIndex === -1) {
+      activeIndex = index;
+    }
   });
+
+  if (ui.presetActions) {
+    ui.presetActions.dataset.activeIndex = `${activeIndex}`;
+    ui.presetActions.style.setProperty("--preset-index", `${Math.max(activeIndex, 0)}`);
+  }
 }
 
 function applySeedFromInput() {
