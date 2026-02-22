@@ -84,17 +84,34 @@
 
           <div class="preset-block" aria-label="Tree presets">
             <h3>Presets</h3>
-            <div id="preset-actions" class="preset-actions" data-active-index="-1">
-              <span class="preset-slider-thumb" aria-hidden="true"></span>
-              <button class="preset-btn" type="button" data-preset="classic">
-                Classic
-              </button>
-              <button class="preset-btn" type="button" data-preset="dense">
-                Dense
-              </button>
-              <button class="preset-btn" type="button" data-preset="minimal">
-                Minimal
-              </button>
+            <div id="preset-actions" class="preset-actions">
+              <div class="preset-dots" aria-label="Preset selector">
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="classic"
+                  data-label="Classic"
+                  aria-label="Classic preset"
+                  title="Classic preset"
+                ></button>
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="dense"
+                  data-label="Dense"
+                  aria-label="Dense preset"
+                  title="Dense preset"
+                ></button>
+                <button
+                  class="preset-btn"
+                  type="button"
+                  data-preset="minimal"
+                  data-label="Minimal"
+                  aria-label="Minimal preset"
+                  title="Minimal preset"
+                ></button>
+              </div>
+              <span id="preset-current-label" class="preset-current-label">Custom</span>
             </div>
           </div>
 

@@ -210,7 +210,7 @@ const ui = {
   privacyModal: null,
   privacyHideTimer: null,
   privacyLastActiveElement: null,
-  presetActions: null,
+  presetCurrentLabel: null,
   presetButtons: [],
 };
 
@@ -394,7 +394,7 @@ function cacheUi() {
   ui.openPrivacyBtn = document.getElementById("open-privacy-btn");
   ui.closePrivacyBtn = document.getElementById("close-privacy-btn");
   ui.privacyModal = document.getElementById("privacy-modal");
-  ui.presetActions = document.getElementById("preset-actions");
+  ui.presetCurrentLabel = document.getElementById("preset-current-label");
   ui.presetButtons = Array.from(document.querySelectorAll("[data-preset]"));
 
   if (ui.applySeedBtn) {
@@ -937,21 +937,20 @@ function flashFactIconFeedback() {
 }
 
 function setActivePreset(activePreset) {
-  let activeIndex = -1;
+  let activeLabel = "Custom";
 
-  ui.presetButtons.forEach((button, index) => {
+  ui.presetButtons.forEach((button) => {
     const isActive = button.dataset.preset === activePreset;
     button.classList.toggle("is-active", isActive);
     button.setAttribute("aria-pressed", `${isActive}`);
 
-    if (isActive && activeIndex === -1) {
-      activeIndex = index;
+    if (isActive) {
+      activeLabel = button.dataset.label || "Custom";
     }
   });
 
-  if (ui.presetActions) {
-    ui.presetActions.dataset.activeIndex = `${activeIndex}`;
-    ui.presetActions.style.setProperty("--preset-index", `${Math.max(activeIndex, 0)}`);
+  if (ui.presetCurrentLabel) {
+    ui.presetCurrentLabel.textContent = activeLabel;
   }
 }
 
