@@ -156,6 +156,10 @@ html[data-theme="dark"] body::before {
   gap: 0.28em;
 }
 
+.hero-title-accent {
+  color: #2d56bd;
+}
+
 .theme-toggle-btn {
   appearance: none;
   border: 0;
@@ -239,6 +243,11 @@ html[data-theme="dark"] body::before {
   color: var(--muted);
   font-size: clamp(0.92rem, 1.04vw, 1.02rem);
   line-height: 1.38;
+}
+
+.hero-copy-accent {
+  color: #2d56bd;
+  font-weight: 700;
 }
 
 .hero-hints {
@@ -1239,8 +1248,16 @@ html[data-theme="dark"] .hero h1 {
   color: #f0f5ff;
 }
 
+html[data-theme="dark"] .hero-title-accent {
+  color: #b5c9ee;
+}
+
 html[data-theme="dark"] .hero-copy {
   color: var(--muted);
+}
+
+html[data-theme="dark"] .hero-copy-accent {
+  color: #d6e2f8;
 }
 
 html[data-theme="dark"] .theme-toggle-btn {
